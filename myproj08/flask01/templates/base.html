@@ -56,12 +56,21 @@ HEELLO WORLD
             </li>
         </ul>
     </nav>
+    <div>
+        <img src="/static/flower.jpg" / style="margin:0 auto; display: block; 
+            width: 200px; 
+            height: 200px; 
+            border-radius: 100px; 
+            box-shadow: 10px 5px 5px #333333;" />
+        <!--가로 200, 세로 200, 모서리를 얼마 만큼만 줄거냐 -->
+    </div>
+
+    {% block body %}
+    {% endblock %}
+
+    <hr />
+    & copy; 2021. 이유림 컴퍼니
 
 </body>
-
-{% block body %}
-{% endblock %}
-<hr />
-& copy; 2021. 이유림 컴퍼니
 
 </html>

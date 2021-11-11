@@ -5,7 +5,7 @@ from flask import Flask, render_template  # 어떤 경로에 post~가 있을거�
 app = Flask(__name__)
 
 
-@app.route("/index")
+@app.route("/")
 def index():
     return render_template("index.html")
 

@@ -7,3 +7,4 @@ class Travel(models.Model):
     day_to_go = models.DateField(verbose_name="가는 날")
     day_to_come = models.DateField(verbose_name="오는 날")
 
+# 바꿈 

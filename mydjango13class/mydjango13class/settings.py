@@ -31,15 +31,28 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # thrid apps (장고가 아닌 제3자가 만든 것)
+    'mall',
+    # local apps (외부에서 가져온 것)
+
 ]
 
+# 추가시, 순서가 중요하지 않음.
+if DEBUG:
+    INSTALLED_APPS +=[
+        # local apps (외부에서 가져온 것)
+        'debug_toolbar',
+    ]
+
 MIDDLEWARE = [
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,6 +61,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# 추가시, 순서가 중요함.
+if DEBUG:
+    MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    ] + MIDDLEWARE  # => 순서가 중요하기 때문
 
 ROOT_URLCONF = 'mydjango13class.urls'
 
@@ -126,3 +145,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+INTERNAL_IPS = ['127.0.0.1'] # 아무나 debug_toolbar를 볼 수 없음.   개발서버를 띄 컴퓨터에서만 보임

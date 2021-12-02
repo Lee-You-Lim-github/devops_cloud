@@ -1,3 +1,8 @@
 from django.contrib import admin
+from triptube.models import Video
 
-# Register your models here.
+
+class VideoAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Video, VideoAdmin)

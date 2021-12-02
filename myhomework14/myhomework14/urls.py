@@ -20,6 +20,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('triptube/', index),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,

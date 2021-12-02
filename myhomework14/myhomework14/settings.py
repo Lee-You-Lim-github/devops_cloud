@@ -57,7 +57,7 @@ MIDDLEWARE = [
 
 if DEBUG:
     MIDDLEWARE = [
-        '"debug_toolbar.middleware.DebugToolbarMiddleware",'
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
     ] + MIDDLEWARE
 
 ROOT_URLCONF = 'myhomework14.urls'

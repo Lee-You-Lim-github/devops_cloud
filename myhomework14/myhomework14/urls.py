@@ -17,11 +17,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from triptube.views import index
+from triptube.views import index, video_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('triptube/', index),
+    path('triptube/<int:pk>/', video_detail)
 ]
 
 urlpatterns += static(settings.MEDIA_URL,
@@ -29,6 +30,7 @@ urlpatterns += static(settings.MEDIA_URL,
 
 if settings.DEBUG:
     import debug_toolbar
+
     urlpatterns += [
         path('__debug__', include(debug_toolbar.urls)),
     ]

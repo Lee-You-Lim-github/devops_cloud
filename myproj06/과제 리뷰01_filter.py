@@ -2,10 +2,10 @@ from pprint import pprint  # 이쁘게 보이는 법(like 정렬)
 
 from typing import List
 
-import pandas as pd
+                                                                                                                                                                                                                                                                                                                                                    import pandas as pd
 
-df = pd.read_csv("https://bit.ly/3nsLDXy")
-song_list = list(df.T.to_dict().values())
+                                                                                                                                                                                                                                                                                                                                                    df = pd.read_csv("https://bit.ly/3nsLDXy")
+                                                                                                                                                                                                                                                                                                                                                    song_list = list(df.T.to_dict().values())
 
 
 """
@@ -68,7 +68,7 @@ print(new_song_list)
 
 # 단순히 print만 한다라고 한다면
 for song_dict in filter(check_bts_song, song_list):
-    print("{title} {artist} {like}".format(**song_list))
+    print("{title} {artist} {like}".format(**song_dict))
 # ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 """
 곡명에 "사랑"이 포함된 곡들의 곡명 리스트를 만들어보세요.
@@ -93,7 +93,9 @@ for song_dict in filter(check_bts_song, song_list):
 #     print("{rank} ")
 
 
-# "좋아요" 수가 200000 이상인 곡들의 곡명 리스트를 만들어 보세요.
+""" 
+"좋아요" 수가 200000 이상인 곡들의 곡명 리스트를 만들어 보세요.
+"""
 
 
 # title_list: List[str] = []

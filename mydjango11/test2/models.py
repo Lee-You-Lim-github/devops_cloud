@@ -6,5 +6,5 @@ class Travel(models.Model):
     city = models.CharField(max_length=100, verbose_name="도시")
     day_to_go = models.DateField(verbose_name="가는 날")
     day_to_come = models.DateField(verbose_name="오는 날")
+    check1 = models.BooleanField(verbose_name="항공권")
 
-# 바꿈 

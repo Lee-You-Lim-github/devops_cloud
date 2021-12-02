@@ -5,17 +5,6 @@ df = pd.read_csv("https://bit.ly/3nsLDXy")
 song_list = list(df.T.to_dict().values())
 
 
-# artist_length = []
-
-# def get_artist_length(song_dict):
-#     if len(song_dict["artist"]) >= 3:
-#         artist: str = song_dict["artist"]
-#         title_length: int = len(song_dict["title"])
-#         artist_length.append([artist, song_dict["like"] * title_length])
-
-# for artist, song_dict["like"] * title in artist_length:
-#     print(artist, song_dict["like"] * title)
-
 
 # 연습문제
 # artist 글자수가 3글자 이상인 곡에 대해서 - filter
@@ -47,3 +36,5 @@ for song_dict in song_list:
 
 for value in value_list:
     print(value)
+
+# 2) filter/map 위주로 구현

@@ -56,7 +56,6 @@ MIDDLEWARE = [
 ]
 
 if DEBUG:
-
     MIDDLEWARE = [
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     ] + MIDDLEWARE

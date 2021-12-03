@@ -1,5 +1,5 @@
 from django.http import HttpRequest,HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from delicious.models import Shop
 
 def shop_list(request: HttpRequest) -> HttpResponse:
@@ -25,3 +25,25 @@ def shop_detail(request: HttpRequest, pk:int) -> HttpResponse:
         "shop":shop,
     }
     return render(request, "delicious/shop_detail.html", context_date)
+
+# 값을 입력 받아서 db에 넣을거임.
+def shop_new_1(request:HttpRequest) -> HttpResponse:
+    if request.method == "GET":    # "GET", "POST" 무조건 대문자
+        return render(request, "delicious/shop_form_1.html", {})
+    else: # "POST"
+        name = request.POST["name"]
+        description = request.POST["description"]
+        address = request.POST["address"]
+        latitude = request.POST["latitude"]
+        longitude = request.POST["longitude"]
+        telephone = request.POST["telephone"]
+        # TODO: 유효성 검사.....
+        Shop.objects.create(
+            name = name,
+            description = description,
+            address = address,
+            latitude = latitude,
+            longitude = longitude,
+            telephone = telephone
+        )
+        return redirect("/delicious/")

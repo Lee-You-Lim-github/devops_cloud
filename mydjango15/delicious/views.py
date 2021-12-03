@@ -4,6 +4,13 @@ from delicious.models import Shop
 
 def shop_list(request: HttpRequest) -> HttpResponse:
     qs = Shop.objects.all()
+
+    # QueryString에 query 이름의 인자를 확인
+    query = request.GET.get("query", "")   # 사전과 같음.
+    if query:
+        qs = qs.filter(name__icontains=query)
+
+
     # template_name = "delicious/shop_list.html"    # 장고에서 사용하고 있는 정식 명칭
     context_data = {
         "shop_list": qs,

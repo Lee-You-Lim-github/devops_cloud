@@ -1,6 +1,12 @@
 {% extends "delicious/layout.html" %}
 
 {% block content %}
+
+    <form action="" method="get">    {# action: 어떤 url로 보낼거냐, "": 현재 주소, method: 전달되는 방법->get 방식 #}
+        <input type="text" name="query" value="{{ request.GET.query }}"/>
+        <input type="submit" value="검색" /> {# 검색 버튼, submit: 검색 내용을 제출하겠다. #}
+    </form>
+
     <table class="table table-hover table-bordered">
         <thead>
             <tr>

@@ -1,0 +1,20 @@
+{% extends "delicious/layout.html" %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>telephone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for shop in shop_list %}
+                <tr>
+                    <td>{{ shop.name }}</td>
+                    <td>{{ shop.telephone }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

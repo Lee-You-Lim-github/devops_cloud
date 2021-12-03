@@ -1,5 +1,7 @@
 from django.http import HttpRequest,HttpResponse
 from django.shortcuts import render, redirect
+from django.views.generic import CreateView
+from delicious.forms import ShopForm
 from delicious.models import Shop
 
 def shop_list(request: HttpRequest) -> HttpResponse:
@@ -47,3 +49,9 @@ def shop_new_1(request:HttpRequest) -> HttpResponse:
             telephone = telephone
         )
         return redirect("/delicious/")
+
+shop_new = CreateView.as_view(
+    model=Shop,
+    form_class=ShopForm,
+    success_url="/delicious/",
+)

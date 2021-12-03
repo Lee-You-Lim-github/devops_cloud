@@ -1,7 +1,7 @@
 {% extends "delicious/layout.html" %}
 
 {% block content %}
-    <table>
+    <table class="table table-hover table-bordered">
         <thead>
             <tr>
                 <th>name</th>
@@ -11,8 +11,16 @@
         <tbody>
             {% for shop in shop_list %}
                 <tr>
-                    <td>{{ shop.name }}</td>
-                    <td>{{ shop.telephone }}</td>
+                    <td>
+                        <a href="/delicious/{{ shop.pk }}">
+                        {{ shop.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="tel:{{ shop.telephone }}">
+                        {{ shop.telephone }}
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

@@ -17,11 +17,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from jeju.views import tour_list
+from jeju.views import tour_list, tour_detail, tour_new
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('jeju/', tour_list),
+    path('jeju/<int:pk>', tour_detail),
+    path('jeju/new/', tour_new),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,

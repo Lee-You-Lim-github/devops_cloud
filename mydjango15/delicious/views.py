@@ -12,7 +12,6 @@ def shop_list(request: HttpRequest) -> HttpResponse:
     if query:
         qs = qs.filter(name__icontains=query)
 
-
     # template_name = "delicious/shop_list.html"    # 장고에서 사용하고 있는 정식 명칭
     context_data = {
         "shop_list": qs,

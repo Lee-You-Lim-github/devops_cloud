@@ -1,3 +1,8 @@
 from django.contrib import admin
+from jeju.models import Tour
 
-# Register your models here.
+class TourAdmin(admin.ModelAdmin):
+    list_display = ["id", "place", "description", "latitude", "longitude", "telephone", "created_at", "updated_at"]
+    list_display_links = ["place"]
+
+admin.site.register(Tour,TourAdmin)

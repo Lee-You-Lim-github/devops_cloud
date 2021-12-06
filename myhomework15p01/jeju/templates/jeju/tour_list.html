@@ -1,0 +1,29 @@
+{% extends "jeju/layout.html" %}
+
+{% block content %}
+
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>place</th>
+                <th>telephone</th>
+            </tr>
+        </thead>
+        <tboby>
+            {% for tour in tour_list %}
+                <tr>
+                    <td>
+                        <a href="/jeju/ {{ tour.pk }}">
+                            {{ tour.place }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="tel:{{ tour.telephone }}">
+                            {{ tour.telephone }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tboby>
+    </table>
+{% endblock %}

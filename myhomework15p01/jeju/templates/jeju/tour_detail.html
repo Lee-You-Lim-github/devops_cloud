@@ -1,0 +1,16 @@
+{% extends "jeju/layout.html" %}
+
+{% block content %}
+
+    <h2>{{ tour.name }}</h2>
+
+    <ul>
+        <li>주소: {{ tour.address }}</li>
+        <li>TEL: {{ tour.telephone }}</li>
+    </ul>
+
+    {{ tour.description|linebreaks }}
+
+    <hr />
+    <a href="/jeju/" class="btn btn-primary">목록으로</a>
+{% endblock %}

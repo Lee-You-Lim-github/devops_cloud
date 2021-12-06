@@ -15,7 +15,6 @@ class Shop(models.Model):
              RegexValidator(r"^\d{3,4}-?\d{3,4}-?\d{4}$",
                             message="전화번호를 입력해 주세요."),
          ])
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

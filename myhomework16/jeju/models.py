@@ -10,7 +10,7 @@ class Tour(models.Model):
     telephone = models.CharField\
         (max_length=15,
          validators=[
-             RegexValidator(r"^\d{0,4}-?\d{3,4}-?\d[{4}$",
+             RegexValidator(r"^\d{0,4}-?\d{3,4}-?\d{4}$",
                             message="전화번호를 입력하세요."),
          ])
     created_at = models.DateTimeField(auto_now_add=True)

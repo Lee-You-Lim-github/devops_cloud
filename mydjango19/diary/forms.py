@@ -19,4 +19,15 @@ from diary.models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = "__all__"
+        # fields = "__all__"
+
+        # 유저로부터 입력받을 필드 이름을 나열
+        fields = [
+            "author_name",
+            "title",
+            "content",
+            "photo",
+            "tag_set",
+        ]
+
+# 이 필드에 대해서만 -> html를 보여줌, 유효성 검사, db로의 저장을 시도!!(ip 필드가 빠져 있음. -> db에 저장 시 null이 들어감.

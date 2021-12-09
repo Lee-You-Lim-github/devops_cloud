@@ -13,6 +13,7 @@ class Post(TimestampedModel):    # pk: id(int)
     content = models.TextField()
     photo = models.ImageField(upload_to="diary/post/%Y/%m/%d")
     tag_set = models.ManyToManyField('Tag', blank=True)
+    ip = models.GenericIPAddressField()
 
 
     # 인스턴스에 대한 문자열 포현을 기대

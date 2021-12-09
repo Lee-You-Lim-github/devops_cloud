@@ -1,5 +1,5 @@
-{%  extends "diary/layout.html" %}
-
+{%  extends "diary/layout.html" %}   # 항상 처음에 있어야 함.
+{% load bootstrap5 %}        # import 과정
 
 {% block content %}
     <h2>Post Form</h2>
@@ -7,9 +7,7 @@
 
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <table>
-        {{ form.as_table }}
-        </table>
+        {% bootstrap_form form %}
         <input type="submit" value="저장하기"/>
     </form>
 

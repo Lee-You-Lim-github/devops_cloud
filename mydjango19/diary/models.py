@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MinValueValidator
+from django.core.validators import MinLengthValidator
 
 class TimestampedModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -14,7 +14,7 @@ class Post(TimestampedModel):    # pk: id(int)
         max_length=200,
         db_index=True,
         validators=[
-            MinValueValidator(3),
+            MinLengthValidator(3),
         ]
     )
     content = models.TextField()

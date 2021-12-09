@@ -32,7 +32,13 @@
       </ul>
     </header>
 
-<h1> 유림이의 다이어리</h1>
+    {%  if messages %}
+        {% for messages in messages %}
+        <div class="alert alert={{ messages.tags }}">
+            {{ messages }}
+        </div>3
+        {% endfor %}
+    {% endif %}
 
 {% block content %}
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator
 
 class TimestampedModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -9,7 +10,13 @@ class TimestampedModel(models.Model):
 
 class Post(TimestampedModel):    # pk: id(int)
     author_name = models.CharField(max_length=20)
-    title = models.CharField(max_length=200, db_index=True)
+    title = models.CharField(
+        max_length=200,
+        db_index=True,
+        validators=[
+            MinValueValidator(3),
+        ]
+    )
     content = models.TextField()
     photo = models.ImageField(upload_to="diary/post/%Y/%m/%d")
     tag_set = models.ManyToManyField('Tag', blank=True)

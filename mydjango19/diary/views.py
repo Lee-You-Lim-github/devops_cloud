@@ -30,7 +30,7 @@ def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
 
 def post_new(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
-        form = PostForm(request.POST, request.FILES)
+        form = PostForm(request.POST, request.FILES)   # FILES를 지정 해야 파일을 받을 수 있음. / post_form.html에도 enctype="multipart/form-data"를 넣어줘야 함.
         if form.is_valid():
             post = form.save(commit=False)
             post.ip = request.META["REMOTE_ADDR"]
@@ -38,7 +38,7 @@ def post_new(request: HttpRequest) -> HttpResponse:
             messages.success(request, "성공적")
             return redirect("diary:post_list")
 
-    else:
+    else:  # GET이라면
         form = PostForm()
 
     return render(request, "diary/post_form.html", {

@@ -18,12 +18,19 @@ class Shop(TimestampedModel):
                                  help_text="입력 예) 042-1234-1234")
     tag_set = models.ManyToManyField('Tag', blank=True)
 
+    def __str__(self) -> str:
+        return self.name
+
 class Review(TimestampedModel):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)  # 폭포처럼 Shop을 지우면 Review가 지워짐.
     author_name = models.CharField(max_length=20)
     message = models.TextField()
 
+
 class Tag(TimestampedModel):
     name = models.CharField(max_length=100, unique = True)
                                                 # unique = True: form에서 알아서 유효성 검사해줌.
+
+    def __str__(self) -> str:
+        return self.name
 

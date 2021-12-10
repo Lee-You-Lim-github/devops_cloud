@@ -14,7 +14,7 @@ from django.core.validators import RegexValidator
 # 모델 따로 폼 따로 만드는 것이 아니라 모델과 폼을 함께 만듦.
 # 모델을 수정해도 폼이 알아서 수정 됨.
 
-from diary.models import Post
+from diary.models import Post, Comment
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -30,4 +30,12 @@ class PostForm(forms.ModelForm):
             "tag_set",
         ]
 
-# 이 필드에 대해서만 -> html를 보여줌, 유효성 검사, db로의 저장을 시도!!(ip 필드가 빠져 있음. -> db에 저장 시 null이 들어감.
+# 이 필드에 대해서만 -> html를 보여줌, 유효성 검사, db로의 저장을 시도!!(ip 필드가 빠져 있음. -> db에 저장 시 null이 들어감.)
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = [
+            "author_name",
+            "message"
+        ]

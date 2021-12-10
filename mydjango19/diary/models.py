@@ -28,7 +28,7 @@ class Post(TimestampedModel):    # pk: id(int)
     # print(post)    # 내부적으로 post.__str__을 찾아서 호출해서 반환값을 출력
     # print(post.__str__())과 같은.
     def __str__(self) -> str:
-        return self.title
+        return f"[{self.pk}]{self.title}"
 
     class Meta:
         verbose_name = "포스팅"

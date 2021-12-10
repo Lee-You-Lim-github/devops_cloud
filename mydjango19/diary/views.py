@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
-from diary.forms import PostForm
+from diary.forms import PostForm, CommentForm
 from diary.models import Post
 
 
@@ -64,3 +64,25 @@ def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
     return render(request, "diary/post_form.html", {
         "form": form,
     })
+
+#/diary/100/comments/new/
+def comment_new(request: HttpRequest, post_pk:int) -> HttpResponse:
+    if request.method == "POST":  # 항상 대문자
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            # form.cleaned_data   # 유효성 검사에 통과한 값들 (dict)
+            save_comment = form.save()   # db 알아서 넣어 줌.
+            return redirect("diary:post_detail", post_pk)
+    else:
+        form = CommentForm()   # GET
+    return render(request, "diary/comment_form.html", {
+        "form": form,
+    })
+
+
+# /diary/100/comments/20/edit/
+def comment_edit(request:HttpRequest, post_pk:int, pk:int) -> HttpResponse:
+    pass
+
+
+

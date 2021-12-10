@@ -1,6 +1,6 @@
 from django.contrib import messages
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpRequest, HttpResponse, Http404
+from django.shortcuts import render, redirect, get_object_or_404
 from diary.forms import PostForm, CommentForm
 from diary.models import Post
 
@@ -20,7 +20,13 @@ def post_list(request: HttpRequest) -> HttpResponse:
 
 
 def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
-    post = Post.objects.get(pk=pk)
+    post = get_object_or_404(Post, pk=pk)   # 아래 4줄과 동일
+
+    # try:
+    #     post = Post.objects.get(pk=pk)  # DoesNotExist 예외
+    # except Post.DoesNotExist:
+    #     raise Http404
+
     comment_list = post.comment_set.all()
     tag_list = post.tag_set.all()
     return render(request,"diary/post_detail.html",{
@@ -48,7 +54,7 @@ def post_new(request: HttpRequest) -> HttpResponse:
 def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
 
     # 아래 코드는 ModelForm에 한해서 동작하는 코드
-    post = Post.objects.get(pk=pk)
+    post = get_object_or_404(Post, pk=pk)
 
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
@@ -67,7 +73,9 @@ def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
 
 #/diary/100/comments/new/
 def comment_new(request: HttpRequest, post_pk:int) -> HttpResponse:
-    post = Post.objects.get(pk = post_pk)
+
+    post = get_object_or_404(Post, pk=post_pk)
+
     if request.method == "POST":  # 항상 대문자
         form = CommentForm(request.POST, request.FILES)
         if form.is_valid():

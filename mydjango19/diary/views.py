@@ -67,11 +67,15 @@ def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
 
 #/diary/100/comments/new/
 def comment_new(request: HttpRequest, post_pk:int) -> HttpResponse:
+    post = Post.objects.get(pk = post_pk)
     if request.method == "POST":  # 항상 대문자
         form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
             # form.cleaned_data   # 유효성 검사에 통과한 값들 (dict)
-            save_comment = form.save()   # db 알아서 넣어 줌.
+            comment = form.save(commit=False)   # db 알아서 넣어 줌.
+            # comment.post_id = post_pk   # FK를 직접 채우진 않음.
+            comment.post = post
+            comment.save()
             return redirect("diary:post_detail", post_pk)
     else:
         form = CommentForm()   # GET

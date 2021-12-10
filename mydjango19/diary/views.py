@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpRequest, HttpResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from diary.forms import PostForm, CommentForm
-from diary.models import Post
+from diary.models import Post, Comment
 
 
 def tag_detail(request: HttpRequest, tag_name:str) -> HttpResponse:
@@ -94,7 +94,25 @@ def comment_new(request: HttpRequest, post_pk:int) -> HttpResponse:
 
 # /diary/100/comments/20/edit/
 def comment_edit(request:HttpRequest, post_pk:int, pk:int) -> HttpResponse:
-    pass
+    comment = get_object_or_404(Comment, pk=pk)
+
+    if request.method == "POST":
+        form = CommentForm(request.POST, request.FILES, instance=comment)  # 수정 대상 지정
+        if form.is_valid():
+            # comment = form.save(commit=False)   # db 알아서 넣어 줌.
+            # # comment.post_id = post_pk   # FK를 직접 채우진 않음.
+            # comment.post = post
+
+            # 이미 몇번째 post인지 앎.
+            form.save()
+            messages.success(request, "성공적으로 수정했습니다.")
+            return redirect("diary:post_detail", post_pk)   # 브라우저에게 주소로 이동 권고
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, "diary/comment_form.html", {
+        "form": form,
+    })
+
 
 
 

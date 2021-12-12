@@ -4,8 +4,11 @@
 
     <h2>{{ shop.name }}</h2>
 
-    {{ shop.description }}
+    {{ shop.description|linebreaks }}
 
     <hr/>
 
+    <a href="{% url "shop:shop_list" %}">
+        목록으로
+    <a/>
 {% endblock %}

@@ -9,3 +9,11 @@ def post_list(request: HttpRequest) -> HttpResponse:
         "post_list": qs,
     })
 
+def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
+    post = Post.objects.get(pk=pk)  # 지정한 조건에 매칭되는 Post가 1개이길 기대함.  / 1개가 아니면 에러가 발생.
+                        # 필드명 = 변수 값
+    return render(request, "diary/post_detail.html", {
+        "post": post,
+    })
+
+

@@ -17,6 +17,11 @@
 
     <h3>맛집 리뷰</h3>
 
+    <a href="{% url "shop:review_new" shop.pk %}">
+    리뷰 쓰기
+    </a>
+
+
     <ul>
         {% for review in review_list %}
             <li>

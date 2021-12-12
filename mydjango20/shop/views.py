@@ -2,7 +2,8 @@ from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from shop.forms import ShopForm, ReviewForm
-from shop.models import Shop
+from shop.models import Shop, Review
+
 
 # shop/
 def shop_list(request: HttpRequest) -> HttpResponse:
@@ -60,7 +61,7 @@ def shop_edit(request: HttpRequest, pk:int) -> HttpResponse:
         "form": form
     })
 
-# /shop/100/review/new
+# /shop/100/reviews/new
 def review_new(request:HttpRequest, shop_pk:int) -> HttpResponse:
     shop = get_object_or_404(Shop, pk=shop_pk)
 
@@ -78,10 +79,18 @@ def review_new(request:HttpRequest, shop_pk:int) -> HttpResponse:
         "form": form,
     })
 
-    
+# /shop/100/reviews/100
+def reviews_edit(request:HttpRequest, shop_pk: int, pk:int) -> HttpResponse:
+    review = get_object_or_404(Review, pk=pk)
 
+    if request.method == "POST":
+        form = ReviewForm(request.POST, request.FILES, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect("shop:shop_detail", shop_pk)
+    else:
+        form = ReviewForm(instance=review)
 
-
-
-
-
+    return render(request, "shop/review_form.html", {
+        "form": form,
+    })

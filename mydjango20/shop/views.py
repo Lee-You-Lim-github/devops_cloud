@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from shop.forms import ShopForm
@@ -28,7 +29,6 @@ def shop_detail(request: HttpRequest, pk:int) -> HttpResponse:
 
 
 # /shop/new
-
 def shop_new(request: HttpRequest) -> HttpResponse:
     # raise NotImplementedError("구현 예정 ")   # 아직 구현하지 않았다.
 
@@ -44,4 +44,26 @@ def shop_new(request: HttpRequest) -> HttpResponse:
         "form": form,
     })
 
+def shop_edit(request: HttpRequest, pk:int) -> HttpResponse:
+    shop = get_object_or_404(Shop, pk=pk)
+
+    if request.method == "POST":
+        form = ShopForm(request.POST, request.FILES, instance=shop)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "수정되었습니다!!")
+            return redirect("shop/shop_list")
+    else:
+        form = ShopForm(instance=shop)
+
+    return render(request, "shop/shop_form.html", {
+        "form": form
+    })
+
     
+
+
+
+
+
+

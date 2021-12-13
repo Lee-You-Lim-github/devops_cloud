@@ -1,6 +1,22 @@
 {% extends "shop/layout.html" %}
 
 {% block content %}         {# 조회이기 때문에 get #}
+    <h2>Shop List</h2>
+    <ul>
+        <li>
+            <a href="?category_id=">
+                전체
+            </a>
+        </li>
+        {% for category in category_list %}
+        <li>
+            <a href="?category_id={{ category.pk }}">
+                {{ category.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
     <form action="" method="get">    {# action: 어떤 url로 보낼거냐, "": 현재 주소, method: 전달되는 방법->get 방식 #}
         <input type="text"
                name="query"

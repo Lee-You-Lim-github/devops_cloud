@@ -2,17 +2,24 @@ from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from shop.forms import ShopForm, ReviewForm
-from shop.models import Shop, Review
+from shop.models import Shop, Review, Category
 
 
 # shop/
 def shop_list(request: HttpRequest) -> HttpResponse:
+    category_qs = Category.objects.all()
     qs = Shop.objects.all()  # .order_by("-id")
+
+    category_id = request.GET.get("category_id", "")
+    if category_id:
+        qs = qs.filter(category__pk=category_id)
+
     query = request.GET.get("query", "")  # 키 명이 query 없다면 빈문자열("")을 가져옴.
     if query:
         qs = qs.filter(name__icontains=query) # 대소문자 구별 X
     return render(request, "shop/shop_list.html", {
         "shop_list": qs,    # qs라는 변수의 이름을 (shop_list)라는 이름으로 접근하겠다.
+        "category_list": category_qs,
     })
 
 

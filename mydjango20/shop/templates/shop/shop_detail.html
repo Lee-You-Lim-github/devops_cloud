@@ -4,6 +4,10 @@
 
     <h2>{{ shop.name }}</h2>
 
+    {% for tag in shop.tag_set.all %}
+        <span class="badge" style="background-color: steelbluea;">{{ tag.name }}</span>
+    {% endfor %}
+
     <p>
         태그:
         {% for tag in tag_list %}

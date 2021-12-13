@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
 
@@ -49,8 +50,22 @@ def shop_new(request:HttpRequest) -> HttpResponse:
         "form": form,
     })
 
+# /shop/<int:pk>/edit
+def shop_edit(request:HttpRequest, pk:int) -> HttpResponse:
+    shop = get_object_or_404(Shop, pk=pk)
 
+    if request.method == "POST":
+        form = ShopForm(request.POST, request.FILES, instance=shop)
+        if form.is_valid():
+            saved_shop = form.save()
+            messages.success(request, "수정 완료!!")
+            return redirect("shop:shop_detail", saved_shop.pk)
+    else:
+        form = ShopForm(instance=shop)
 
+    return render(request, "shop/shop_form.html", {
+        "form": form,
+    })
 
 
 

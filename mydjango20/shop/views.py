@@ -43,17 +43,7 @@ def shop_new(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = ShopForm(request.POST, request.FILES)
         if form.is_valid():
-            saved_post = form.save()
-
-            tag_list = []
-            tags = form.cleaned_data.get("tags", "")
-            for word in tags.split(","):
-                tag_name = word.strip()
-                tag, __ = Tag.objects.get_or_create(name=tag_name)  
-                tag_list.append(tag)
-
-            saved_post.tag_set.clear()   # 간단구현을 위해 clear 호출
-            saved_post.tag_set.add(*tag_list)
+            saved_post = form.save()  # 가장 먼저 호출되어야 됨.
 
             # shop_detail 뷰를 구현했다면!!
             return redirect("shop:shop_detail", saved_post.pk)
@@ -69,9 +59,9 @@ def shop_edit(request: HttpRequest, pk:int) -> HttpResponse:
     if request.method == "POST":
         form = ShopForm(request.POST, request.FILES, instance=shop)
         if form.is_valid():
-            form.save()
+            saved_post= form.save()
             messages.success(request, "수정되었습니다!!")
-            return redirect("shop/shop_list")
+            return redirect("shop:shop_detail", saved_post.pk)
     else:
         form = ShopForm(instance=shop)
 

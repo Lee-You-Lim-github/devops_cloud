@@ -11,13 +11,17 @@
                         <a href="{% url "shop:shop_detail" shop.pk %}">
                             {{ shop.name }}
                         </a>
-
                     </li>
                 {% endfor %}
             </ul>
         </div>
 
         <div class="col-sm-4">
+            <div class="d-grid mb-3">
+                <a href="{% url "shop:shop_new" %}" class="btn btn-primary">
+                    새로운 맛집 등록
+                </a>
+            </div>
             <form action="" method="get" class="mb-3">
                 <input type="text"
                         name="query"

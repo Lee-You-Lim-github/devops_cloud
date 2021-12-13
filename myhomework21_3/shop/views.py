@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
 
 
 # /shop/
+from shop.form import ShopForm
 from shop.models import Category, Shop
 
 
@@ -32,3 +33,24 @@ def shop_detail(request:HttpRequest, pk:int) -> HttpResponse:
         "shop": shop,
         "tag_list": tag_list,
     })
+
+# /shop/new
+def shop_new(request:HttpRequest) -> HttpResponse:
+    if request.method == "POST":
+        form = ShopForm(request.POST, request.FILES)
+        if form.is_valid():
+            saved_shop = form.save()
+            return redirect("shop:shop_detail", saved_shop.pk)
+
+    else:
+        form = ShopForm()
+
+    return render(request, "shop/shop_form.html", {
+        "form": form,
+    })
+
+
+
+
+
+

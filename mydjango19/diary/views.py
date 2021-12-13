@@ -40,7 +40,7 @@ def post_new(request: HttpRequest) -> HttpResponse:
         if form.is_valid():
             post = form.save(commit=False)
             post.ip = request.META["REMOTE_ADDR"]
-            form.save()
+            post.save()
             messages.success(request, "성공적")
             return redirect("diary:post_list")
 

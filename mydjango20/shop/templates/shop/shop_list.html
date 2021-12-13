@@ -17,7 +17,11 @@
         </div>
 
         <div class="col-sm-4">
-            <form action="" method="get">    {# action: 어떤 url로 보낼거냐, "": 현재 주소, method: 전달되는 방법->get 방식 #}
+            <div class="d-grid mb-3">  {# 버튼 구현 #}
+                <a href="{% url "shop:shop_new" %}" class="btn btn-primary">새 포스팅 쓰기</a>
+            </div>
+
+            <form action="" method="get" class="mb-3">    {# action: 어떤 url로 보낼거냐, "": 현재 주소, method: 전달되는 방법->get 방식 #}
                 <input type="text"
                        name="query"
                        placeholder="검색어를 입력해주세요."

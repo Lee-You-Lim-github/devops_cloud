@@ -14,6 +14,9 @@ class Category(TimestampedModel):
     def __str__(self) -> str:
         return self.name
 
+    class Meta:
+        ordering = ["-id"]
+
 class Shop(TimestampedModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)  # 필수 필드 # Category와 Shop은 1:1
     name = models.CharField(max_length=100, db_index=True)
@@ -28,15 +31,23 @@ class Shop(TimestampedModel):
     def __str__(self) -> str:
         return self.name
 
+    class Meta:
+        ordering = ["-id"]   # 최신 작성 내용으로 내림차순 정렬
+
 class Review(TimestampedModel):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)  # 폭포처럼 Shop을 지우면 Review가 지워짐.
     author_name = models.CharField(max_length=20)
     message = models.TextField()
 
+    class Meta:
+        ordering = ["-id"]
+
 
 class Tag(TimestampedModel):
     name = models.CharField(max_length=100, unique = True)
                                                 # unique = True: form에서 알아서 유효성 검사해줌.
+    class Meta:
+        ordering = ["name"]
 
     def __str__(self) -> str:
         return self.name

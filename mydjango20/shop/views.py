@@ -7,12 +7,12 @@ from shop.models import Shop, Review
 
 # shop/
 def shop_list(request: HttpRequest) -> HttpResponse:
-    qs = Shop.objects.all()
-    query = request.GET.get("query", "")
+    qs = Shop.objects.all()  # .order_by("-id")
+    query = request.GET.get("query", "")  # 키 명이 query 없다면 빈문자열("")을 가져옴.
     if query:
-        qs = qs.filter(name__icontains=query)
+        qs = qs.filter(name__icontains=query) # 대소문자 구별 X
     return render(request, "shop/shop_list.html", {
-        "shop_list": qs,
+        "shop_list": qs,    # qs라는 변수의 이름을 (shop_list)라는 이름으로 접근하겠다.
     })
 
 

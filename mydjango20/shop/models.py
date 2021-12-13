@@ -8,7 +8,14 @@ class TimestampedModel(models.Model):
     class Meta:
         abstract = True    # 다른 모델 클래스가 상송 받을 목적
 
+class Category(TimestampedModel):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
+
 class Shop(TimestampedModel):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)  # 필수 필드 # Category와 Shop은 1:1
     name = models.CharField(max_length=100, db_index=True)
     description = models.TextField(blank=True)
     telephone = models.CharField(max_length=14,

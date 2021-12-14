@@ -5,7 +5,7 @@ from django.http import HttpRequest, HttpResponse
 
 # shop/
 from shop.form import ShopForm, ReviewForm
-from shop.models import Category, Shop
+from shop.models import Category, Shop, Review
 
 
 def shop_list(request:HttpRequest) -> HttpResponse:
@@ -87,5 +87,20 @@ def review_new(request:HttpRequest, shop_pk:int) -> HttpResponse:
         "form": form,
     })
 
+# shop/100/review/100/edit
+def review_edit(request:HttpRequest, shop_pk:int, review_pk:int) -> HttpResponse:
+    review = get_object_or_404(Review, pk=review_pk)
 
+    if request.method == "POST":
+        form = ReviewForm(request.POST, request.FILES, instance=review)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "성공적으로 수정했습니다.")
+        return redirect("shop:shop_detail", shop_pk)
 
+    else:
+        form = ReviewForm(instance=review)
+
+    return render(request, "shop/review_form.html", {
+        "form": form,
+    })

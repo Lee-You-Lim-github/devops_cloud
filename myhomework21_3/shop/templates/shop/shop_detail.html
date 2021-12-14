@@ -24,9 +24,13 @@
             <li>
                 {{ review.message }}
             by {{ review.author_name }}
-            at {{ review.created_at }}
-
-
+            at
+            <span title="{{ review.created_at }}">
+                {{ review.created_at|timesince }} 전
+            </span>
+                <a href="{% url "shop:review_edit" shop.pk review.pk %}">
+                    수정
+                </a>
             </li>
         {% endfor %}
     </ul>

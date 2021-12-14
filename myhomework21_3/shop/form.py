@@ -1,5 +1,5 @@
 from django import forms
-from shop.models import Shop, Tag
+from shop.models import Shop, Tag, Review
 
 
 class ShopForm(forms.ModelForm):
@@ -12,7 +12,7 @@ class ShopForm(forms.ModelForm):
             tags = ",".join([tag.name for tag in tag_qs])
             self.fields["tags"].initial = tags
 
-    def save(self):
+    def save(self, commit=True):
         saved_shop = super().save()
 
         tag_list = []
@@ -34,4 +34,12 @@ class ShopForm(forms.ModelForm):
             "name",
             "telephone",
             "description",
+        ]
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = [
+            "author_name",
+            "message",
         ]

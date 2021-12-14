@@ -3,8 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
 
 
-# /shop/
-from shop.form import ShopForm
+# shop/
+from shop.form import ShopForm, ReviewForm
 from shop.models import Category, Shop
 
 
@@ -25,7 +25,7 @@ def shop_list(request:HttpRequest) -> HttpResponse:
         "category_list": category_qs,
     })
 
-# /shop/100
+# shop/100
 def shop_detail(request:HttpRequest, pk:int) -> HttpResponse:
     shop = get_object_or_404(Shop, pk=pk)
 
@@ -35,7 +35,7 @@ def shop_detail(request:HttpRequest, pk:int) -> HttpResponse:
         "tag_list": tag_list,
     })
 
-# /shop/new
+# shop/new
 def shop_new(request:HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = ShopForm(request.POST, request.FILES)
@@ -50,7 +50,7 @@ def shop_new(request:HttpRequest) -> HttpResponse:
         "form": form,
     })
 
-# /shop/<int:pk>/edit
+# shop/<int:pk>/edit
 def shop_edit(request:HttpRequest, pk:int) -> HttpResponse:
     shop = get_object_or_404(Shop, pk=pk)
 
@@ -64,6 +64,24 @@ def shop_edit(request:HttpRequest, pk:int) -> HttpResponse:
         form = ShopForm(instance=shop)
 
     return render(request, "shop/shop_form.html", {
+        "form": form,
+    })
+
+# shop/100/review/new
+def review_new(request:HttpRequest, shop_pk:int) -> HttpResponse:
+    shop = get_object_or_404(Shop, pk=shop_pk)
+
+    if request.method == "POST":
+        form = ReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.shop = shop
+            review.save()
+            return redirect("shop:shop_detail", shop_pk)
+    else:
+        form = ReviewForm()
+
+    return render(request, "shop/review_form.html", {
         "form": form,
     })
 

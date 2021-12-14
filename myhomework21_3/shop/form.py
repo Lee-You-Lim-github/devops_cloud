@@ -12,8 +12,8 @@ class ShopForm(forms.ModelForm):
             tags = ",".join([tag.name for tag in tag_qs])
             self.fields["tags"].initial = tags
 
-    def save(self, commit=True):
-        saved_shop = super().save()
+    def _save_m2m(self):
+        super()._save_m2m()
 
         tag_list = []
         tags = self.cleaned_data.get("tags", "")
@@ -22,10 +22,8 @@ class ShopForm(forms.ModelForm):
             tag, __ = Tag.objects.get_or_create(name = tag_name)
             tag_list.append(tag)
 
-        saved_shop.tag_set.clear()
-        saved_shop.tag_set.add(*tag_list)
-
-        return saved_shop
+        self.instance.tag_set.clear()
+        self.instance.tag_set.add(*tag_list)
 
     class Meta:
         model = Shop

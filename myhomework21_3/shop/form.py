@@ -5,13 +5,17 @@ from shop.models import Shop, Tag, Review
 class ShopForm(forms.ModelForm):
     tags = forms.CharField()
 
-    def __int__(self, *args, **kwargs):
+# 가지고 있던 태그값 호출
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+# 초기값 기억하기
         if self.instance.pk:
             tag_qs = self.instance.tag_set.all()
-            tags = ",".join([tag.name for tag in tag_qs])
+            tags = ", ".join([tag.name for tag in tag_qs])
             self.fields["tags"].initial = tags
 
+# 폼내부에서 태그입력가능
     def _save_m2m(self):
         super()._save_m2m()
 

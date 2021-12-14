@@ -5,9 +5,9 @@
     <h2>{{ shop.name }}</h2>
 
     <p>
-    태그:
+        태그:
         {% for tag in tag_list %}
-        <span class="badge bg-success">
+            <span class="badge bg-success">
             {{ tag.name }}
         </span>
         {% endfor %}
@@ -15,11 +15,24 @@
     {{ shop.telephone }}
     {{ shop.description|linebreaks }}
 
+    <h3>리뷰 쓰기</h3>
+    <ul>
+        {% for review in review_list %}
+            <li>
+                {{ review.message }}
+            by {{ review.author_name }}
+            at {{ review.created_at }}
+
+
+            </li>
+        {% endfor %}
+    </ul>
+
     <hr/>
     <a href="{% url "shop:shop_list" %}">
-    목록으로
+        목록으로
     </a>
     <a href="{% url "shop:shop_edit" shop.pk %}">
-    수정
+        수정
     </a>
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from shop.form import ShopForm
-from shop.models import Category, Shop, Tag
+from shop.models import Category, Shop, Tag, Review
 
 
 @admin.register(Category)
@@ -14,4 +14,8 @@ class ShopAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
     pass

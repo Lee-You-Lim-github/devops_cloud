@@ -87,7 +87,7 @@ def review_new(request:HttpRequest, shop_pk:int) -> HttpResponse:
         "form": form,
     })
 
-# /shop/100/reviews/100
+# /shop/100/reviews/100/edit
 def reviews_edit(request:HttpRequest, shop_pk: int, pk:int) -> HttpResponse:
     review = get_object_or_404(Review, pk=pk)
 

@@ -15,7 +15,10 @@
     {{ shop.telephone }}
     {{ shop.description|linebreaks }}
 
-    <h3>리뷰 쓰기</h3>
+    <a href="{% url "shop:review_new" shop.pk %}">
+        리뷰 쓰기
+    </a>
+
     <ul>
         {% for review in review_list %}
             <li>

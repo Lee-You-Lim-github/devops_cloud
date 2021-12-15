@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 
 class TimestampedModels(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -35,6 +37,8 @@ class Post(TimestampedModels):
 
     def __str__(self):
         return self.title
+
+
 
     class Meta:
         ordering = ['-id']

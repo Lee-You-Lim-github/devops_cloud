@@ -28,7 +28,8 @@ def post_new(request:HttpRequest) -> HttpResponse:
         if form.is_valid():
             saved_post = form.save()
             messages.success(request, "새로운 포스팅을 저장했습니다.")
-            return redirect("blog:post_detail", saved_post.pk)    # saved_post = form.save()에 pk값이 저장되었기 때문에 saved_post.pk라고 해야 함.
+            return redirect(saved_post)
+            # return redirect("blog:post_detail", saved_post.pk)    # saved_post = form.save()에 pk값이 저장되었기 때문에 saved_post.pk라고 해야 함.
     else:
         form = PostForm()
     return render(request, "blog/post_form.html", {
@@ -43,8 +44,9 @@ def post_edit(request:HttpRequest, pk:int) -> HttpResponse:
         if form.is_valid():
             saved_post = form.save()
             messages.success(request, f"{pk} 포스팅을 저장했습니다.")
-            return redirect("blog:post_detail",
-                            saved_post.pk)  # saved_post = form.save()에 pk값이 저장되었기 때문에 saved_post.pk라고 해야 함.
+            return redirect(saved_post)
+            # return redirect("blog:post_detail",
+            #                 saved_post.pk)  # saved_post = form.save()에 pk값이 저장되었기 때문에 saved_post.pk라고 해야 함.
     else:
         form = PostForm(instance=post)
     return render(request, "blog/post_form.html", {

@@ -16,7 +16,7 @@ class ShopForm(forms.ModelForm):
         # 초기값도 우리가 직접 지정해주어야 합니다.
 
 # 초기값 기억하기
-        if self.instance.pk: # 수정 시
+        if self.instance.pk:     # 수정 시
             tag_qs = self.instance.tag_set.all()
             tags = ", ".join([tag.name for tag in tag_qs])
             self.fields["tags"].initial = tags
@@ -25,7 +25,7 @@ class ShopForm(forms.ModelForm):
 
 # 폼내부에서 태그입력가능
     def _save_m2m(self):
-        # 부모의 save를 호출해 주어야 함.         # 부모의 save 호출 X
+        # 부모의 save 호출 -> # 부모의 save를 호출해 주어야 함.
         super()._save_m2m()
 
         # 부가적인 연산을 수행할 수 있음.
@@ -36,10 +36,8 @@ class ShopForm(forms.ModelForm):
             tag, __ = Tag.objects.get_or_create(name=tag_name)
             tag_list.append(tag)
 
-        self.instance.tag_set.clear()  # 간단구현을 위해 clear 호출
+        self.instance.tag_set.clear()  # 간단 구현을 위해 clear 호출
         self.instance.tag_set.add(*tag_list)
-
-
 
     class Meta:
         model = Shop
@@ -48,7 +46,6 @@ class ShopForm(forms.ModelForm):
             "name",
             "telephone",
             "description",
-
         ]
 
 class ReviewForm(forms.ModelForm):

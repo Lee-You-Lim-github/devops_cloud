@@ -8,11 +8,19 @@
     <title>이유림의 블로그</title>
 </head>
 <body>
-    <h1>이유림의 블로그</h1>
+<h1>이유림의 블로그</h1>
 
-    {% block content %}{% endblock %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert={{ message.tags }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
 
-    <hr/>
-    &copy 2021. 이유림 컴퍼니
+{% block content %}{% endblock %}
+
+<hr/>
+&copy 2021. 이유림 컴퍼니
 </body>
 </html>

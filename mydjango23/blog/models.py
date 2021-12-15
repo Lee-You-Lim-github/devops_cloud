@@ -38,7 +38,10 @@ class Post(TimestampedModels):
     def __str__(self):
         return self.title
 
-
+    # post detall 주소 문자열을 반환
+    # detail 페이지를 구현하자마자, 즉시 아래 매서드 구현합니다.
+    def get_absolute_url(self):
+        return reverse("blog:post_detail", args=[self.pk])
 
     class Meta:
         ordering = ['-id']

@@ -30,6 +30,7 @@ class Post(TimestampedModels):
             ('P', '공개'),  # Published
         ],
         db_index=True,
+        default='D',  # 초안이라고 하면 안 됨.
     )
 
     def __str__(self):

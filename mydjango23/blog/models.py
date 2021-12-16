@@ -1,3 +1,5 @@
+import tablib
+from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
 
@@ -43,6 +45,23 @@ class Post(TimestampedModels):
     def get_absolute_url(self):
         return reverse("blog:post_detail", args=[self.pk])
 
+    @classmethod   # 클래스 매서드를 붙임.
+    def get_tabular_data(cls, queryset, format="xlsx") -> bytes:  # 인스턴스 매서드    # cls: 파이썬이 알아서 지정(class)
+                                                                  # format을 지정하지 않으면 xlsx를 반환함.
+        dataset = tablib.Dataset()
+        dataset.headers = ["id", "title", "created_at", "updated_at"]
+
+        for post in queryset:    # cls = Post
+            dataset.append(
+                [
+                post.id,
+                post.title,
+                post.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+                post.updated_at.strftime("%Y-%m-%d %H:%M:%S"),
+                ])
+        return dataset.export(format)
+
+
     class Meta:
         ordering = ['-id']
 
@@ -64,3 +83,11 @@ class Tag(TimestampedModels):
 
     class Meta:
         ordering = ["name"]
+
+class Subscriber(TimestampedModels):
+    phone = models.CharField(
+        max_length=15,
+        validators=[    # 1. 유효성 검사
+            RegexValidator(r"^\d{3,4}-?\d{3,4}-?\d{4}$"),
+        ],
+    )

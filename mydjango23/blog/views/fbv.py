@@ -1,16 +1,30 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
+from django.views.generic import CreateView
 
-from blog.forms import PostForm
-from blog.models import Post
+from blog.forms import PostForm, SubscriberForm
+from blog.models import Post, Subscriber
 
 
 def post_list(request:HttpRequest) -> HttpResponse:
     post_qs = Post.objects.all()
-    return render(request, "blog/post_list.html", {
-        'post_list':post_qs,
-    })
+
+    format = request.GET.get("format")  # format이라는 이름의 querystring을 가져옴.
+
+    if format == "xlsx":
+        tabular_data = Post.get_tabular_data(post_qs, format="xlsx")
+        return HttpResponse(tabular_data, content_type="application/vnd.ms-excel")  # 생략 식 html 포멧
+    elif format == "json":
+        tabular_data = Post.get_tabular_data(post_qs, format="json")
+        return HttpResponse(tabular_data, content_type="application/json")
+
+
+    return render(request,
+                  "blog/post_list.html",
+                  {
+                    'post_list':post_qs,
+                  })
 
 
 def post_detail(request:HttpRequest, pk:int) -> HttpResponse:
@@ -70,3 +84,8 @@ def post_delete(request:HttpRequest, pk:int) -> HttpResponse:
     return render(request, "blog/post_confirm_delete.html", {
         "post": post,
     })
+
+subscriber_new = CreateView.as_view(
+    model=Subscriber,
+    form_class=SubscriberForm,
+)

@@ -1,11 +1,12 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
 from PIL import Image
+
+from account.forms import LoginForm, Signupform
+
 
 def profile_image(request:HttpRequest) -> HttpResponse:
     canvas = Image.new("RGBA", (256,256), (255,0,0,255))
@@ -16,6 +17,7 @@ def profile_image(request:HttpRequest) -> HttpResponse:
     return response
 
 login = LoginView.as_view(
+    form_class = LoginForm,
     template_name="account/login_form.html",
 )
 
@@ -23,12 +25,12 @@ login = LoginView.as_view(
 # 새로운 User  인스턴스를 만드는 것.
 def signup(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST, request.FILES)
+        form = Signupform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect("account:login")
     else:
-        form = UserCreationForm()
+        form = Signupform()
     return render(
         request,
         "account/signup_form.html",

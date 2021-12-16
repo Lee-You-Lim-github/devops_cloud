@@ -1,4 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -13,9 +15,10 @@ def profile_image(request:HttpRequest) -> HttpResponse:
 
     return response
 
+login = LoginView.as_view(
+    template_name="account/login_form.html",
+)
 
-def login(request):
-    pass
 
 # 새로운 User  인스턴스를 만드는 것.
 def signup(request):
@@ -39,10 +42,12 @@ def signup(request):
 #     template_name= "account/signup_form.html",
 # )
 
+@login_required  # 로그인이 필요하다.
 def profile(request):
-    pass
+    return render(request, "account/profile.html")
 
-def logout(request):
-    pass
+logout = LogoutView.as_view(
+    next_page="account:login",
+)
 
 

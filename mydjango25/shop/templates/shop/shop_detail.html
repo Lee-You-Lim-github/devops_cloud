@@ -22,9 +22,13 @@
 
     <h3>리뷰</h3>
 
-    {% for reivew in shop.review_set.all %}
+    <a href="{% url 'shop:review_new' shop.pk %}" class="btn btn-primary">
+    리뷰 쓰기
+    </a>
+
+    {% for review in shop.review_set.all %}
     <div>
-    {{ reivew.message }}
+    {{ review.message }}
     by {{ review.user }}
     at {{ review.created_at }}
     </div>

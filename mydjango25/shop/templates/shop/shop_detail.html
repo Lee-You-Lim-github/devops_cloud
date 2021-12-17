@@ -18,4 +18,17 @@
 
     {{ shop.description|default:"설명이 없습니다." }}  {# 앞에 있는 값이 거짓이라면 default 값을 사용하겠다. #}
 
+    <hr/>
+
+    <h3>리뷰</h3>
+
+    {% for reivew in shop.review_set.all %}
+    <div>
+    {{ reivew.message }}
+    by {{ review.user }}
+    at {{ review.created_at }}
+    </div>
+    {% empty %}
+    등록된 리뷰가 없습니다.
+    {% endfor %}
 {% endblock %}

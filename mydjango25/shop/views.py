@@ -1,10 +1,11 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponse
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, resolve_url
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from shop.forms import ReviewForm
+from shop.mixins import ReviewUserCheckMixin
 from shop.models import Shop, Category, Review
 
 
@@ -30,7 +31,7 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
     # FIXME: shop_detail로 보내기
     # form_valid에서 직접 URL 이동을 하기에
     # 아래 success_url 설정은 불필요
-    # success_url = reverse_lazy("shop:shop_list")
+    # success_url = reverse_lazy("shop:shop_list")    # super() 부모를 호출했다면 사용해야 함.
 
     # 유효성 검사에 통과한다면...
     def form_valid(self, form) -> HttpResponse:    # form_valid는 review.save(), success_url가 있음.
@@ -51,4 +52,23 @@ review_new = ReviewCreateView.as_view()
 
 # ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
+class ReviewUpdateView(LoginRequiredMixin, ReviewUserCheckMixin, UpdateView):
+    model = Review
+    form_class = ReviewForm
+    # FIXME: shop_detail로 보내기
+    # success_url = reverse_lazy("shop:shop_list") # 고정
 
+    def get_success_url(self) -> str:
+        review = self.object
+        return resolve_url(review.shop)
+
+
+review_edit = ReviewUpdateView.as_view()
+
+# 로그인 하지 않아도 수정할 수 있고, 다른 사람의 리뷰를 수정할 수 있음.
+# review_edit = UpdateView.as_view(
+#     model=Review,
+#     form_class=ReviewForm,
+#     FIXME: shop_detail로 보내기
+#     success_url=reverse_lazy("shop:shop_list"),
+# )

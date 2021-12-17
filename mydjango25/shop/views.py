@@ -13,3 +13,8 @@ class ShopListView(ListView):
 
 # shop/
 shop_list = ShopListView.as_view()
+
+shop_detail = DetailView.as_view(
+    model=Shop,
+
+)

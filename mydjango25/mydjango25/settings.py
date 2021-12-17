@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
+    'django.contrib.auth',  # auth 안에 User 모델이 있음.
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',

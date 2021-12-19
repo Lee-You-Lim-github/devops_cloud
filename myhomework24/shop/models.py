@@ -1,5 +1,6 @@
 from django.core.validators import RegexValidator
 from django.db import models
+from django.shortcuts import redirect
 
 
 class TimestampedModels(models.Model):
@@ -24,8 +25,8 @@ class Category(TimestampedModels):
 class Post(TimestampedModels):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, db_index=True)
-    content = models.TextField()
-    photo = models.ImageField(upload_to='shop/post/%y/%m/%d')
+    content = models.TextField(blank=True)
+    photo = models.ImageField(upload_to='shop/post/%y/%m/%d', blank=True)
     telephone = models.CharField(max_length=14,
                                  validators=[
                                 RegexValidator(r"^\d{0,4}-?\d{3,4}-?\d{4}$")
@@ -46,6 +47,9 @@ class Post(TimestampedModels):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return redirect("shop:post_detail", args=[self.pk])
 
 class Review(TimestampedModels):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

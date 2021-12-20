@@ -21,7 +21,7 @@ shuffle(animal_names);
 // console.log(animal_names);
 
 // TODO: 현재 timestamp
-let begin_time = new Date().getTime() / 1000;
+let begin_time = new Date().getTime();
 
 
 
@@ -44,11 +44,13 @@ for (let random_name of random_animal) {
     }
 }
 
-let end_time = new Date().getTime() / 1000;
+let end_time = new Date().getTime();
+
+let total_time = parseInt((end_time - begin_time) / 1000);
 
 
 
-console.log(`${ok_counter}번 성공하셨습니다.`)
-console.log(`총 ${end_time - begin_time}초가 걸리셨습니다.`);
+console.log(`${ok_counter}번 성공하셨습니다.`);
+console.log(`총 ${total_time}초가 걸리셨습니다.`);
 
 

@@ -4,28 +4,36 @@ const { melon_data: song_array } = require("./melon_data");
 // reduce, Set
 
 
+// 교수님 풀이 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+/*
+{
+    "가수1": 2,
+    "가수2": 4,
+    "가수3": 5,
+}
+*/
 
-// const artist_Set = new Set();
+const artist_count_object = song_array
+    .reduce((acc, { artist }) => {
+        // if (!acc[artist]) acc[artist] = 0;
+        acc[artist] ||= 0;
+        // acc[artist] = acc[artist] || 0;
+        // i = i || 1
+        // i ||= 1
+        console.log(artist_count_object);
+        acc[artist] += 1;
+        return acc;
+    }, {});
 
-const rank_title = song_array.reduce((acc, cur) => acc.artist + cur.artist >= 2);
+// // console.log(artist_count_object.value);    //{'방탄': 10}
 
-console.log(rank_title);
+// const a = Object.values(artist_count_object)
+//     .filter(number => number >= 2)
+//     .length;
 
-// for (song of song_array) {
-//     artist_Set.add(song.artist);
-// }
+// console.log(a);   // 14
 
-// console.log(artist_Set.size);
+// // python version
 
-
-
-
-
-
-
-// const rank_title = song_array.reduce((previous, current))
-
-// .reduce((previous, current) => {
-//     return previous.like < current.like ? current : previous;
-
-
+// // if artist not in acc:
+// //     acc[artsit] = 0

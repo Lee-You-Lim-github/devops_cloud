@@ -26,10 +26,24 @@ const { melon_data: song_array, melon_data } = require("./melon_data");
 // ref: https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 
 
-const like_array = song_array.sort((a, b) => {
-    return a.like - b.like;  // 오름차순
+// Array의 sort는 
+//    자신(array)의 순서도 변경하고, 자신을 반환
+// Python의 List sort는 
+//      자신(list)의 순서만 변경하고, 리턴 값이 없어요. (None)
+
+// 내 풀이 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+const like_array = song_array.sort((song1, song2) => {
+    return song1.like - song2.like;  // 오름차순
+    // song2가 크면, 음수
+    // song1이 크면, 양수
+    // 0
 })
 
-for (const song of like_array) {
-    console.log(`[${song.like}], ${song.title}`);
-}
+const { like, title } = song;   // like, title 필드만 받겠다.
+
+console.log(like, title);
+
+// for (const { like, title } of like_array) {
+//     console.log(`[${like}], ${title}`);
+// }
+

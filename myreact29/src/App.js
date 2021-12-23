@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+// import Counter from './Counter'; // 앞에 Counter는 "Counter"를 Counter로 쓰겠다는 의미이기 때문에 보통 같은 이름을 씀.
+// import MelonTop100 from './MelonTop100';
+
+import MelonSearch from './MelonSearch';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>안녕 리액트1</h1>
+      <MelonSearch />
+      {/* <MelonTop100 />
+      <Counter />
+      <Counter />
+      <Counter /> */}
     </div>
   );
 }

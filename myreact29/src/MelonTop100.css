@@ -1,0 +1,11 @@
+.songList {
+  background-color: lightyellow;
+  padding: 0;
+  margin: 0;
+}
+
+.songList li {
+  list-style: none;
+  background-color: rgb(206, 189, 253);
+  margin: 5px;
+}

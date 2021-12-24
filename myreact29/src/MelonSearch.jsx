@@ -5,7 +5,7 @@ import Axios from 'axios';
 import jsonpAdapter from 'axios-jsonp';
 
 // antd list 추가
-import { List, Avatar } from 'antd';
+import { List, Avatar, notification } from 'antd';
 
 function MelonSearch() {
   const [query, setQuery] = useState('');
@@ -38,18 +38,29 @@ function MelonSearch() {
       .then((response) => {
         // ALBUMCONTENTS, ARTISTCONTENTS
         const {
-          data: { SONGCONTENTS: searchedSongList },
+          data: { SONGCONTENTS: searchedSongList = [] }, // 대상이 undefined일 때 빈 array를 주겠다.
         } = response;
         console.group('멜론 검색 결과');
         console.log(searchedSongList);
         console.groupEnd();
 
         setSongList(searchedSongList);
+
+        notification.info({
+          message: '멜론 검색',
+          description: `${searchedSongList.length}개의 노래 검색 결과가 있습니다.`,
+        });
       })
       .catch((error) => {
         console.group('멜론 검색 에러');
         console.log(error);
         console.groupEnd();
+
+        notification.error({
+          message: '멜론 검색 에러',
+          // 주의: 유처 친화적인 에러 메세지는 아닙니다.
+          description: JSON.stringify(error),
+        });
       });
   };
 
@@ -72,7 +83,14 @@ function MelonSearch() {
               <List.Item>
                 <List.Item.Meta
                   avatar={<Avatar src={song.ALBUMIMG} />}
-                  title={song.SONGNAME}
+                  title={
+                    <a
+                      href={`https://www.melon.com/song/detail.htm?songId=${song.SONGID}`}
+                      target={'_blank'}
+                    >
+                      {song.SONGNAME}
+                    </a>
+                  }
                   description={song.ARTISTNAME}
                 />
               </List.Item>

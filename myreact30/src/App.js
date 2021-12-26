@@ -1,11 +1,11 @@
-import Counter from "Counter";
+import PageAbout from "pages/PageAbout";
+import PageCounter from "pages/PageCounter";
 
 function App() {
   return (
     <>
-      <Counter initial={10} color={"blue"} />
-      <Counter initial={10} color={"red"} />
-      <Counter initial={10} color={"green"} />
+      <PageAbout />
+      <PageCounter />
     </>
   );
 }

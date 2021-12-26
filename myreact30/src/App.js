@@ -2,6 +2,7 @@ import { useState } from "react";
 import TopNav from "components/TopNav";
 import PageAbout from "pages/PageAbout";
 import PageCounter from "pages/PageCounter";
+import PageLotto from "pages/PageLotto";
 
 function App() {
   const [pageName, setPageName] = useState("about");
@@ -17,6 +18,7 @@ function App() {
       <TopNav changePageName={setPageName} />
       {pageName === "about" && <PageAbout />}
       {pageName === "counter" && <PageCounter />}
+      {pageName === "lotto" && <PageLotto />}
     </div>
   );
 }

@@ -5,7 +5,7 @@ function TopNav({ changePageName }) {
         <a onClick={() => changePageName("lotto")}>lotto</a>
       </li>
       <li>
-        <a onClick={() => changePageName("profile1")}>ProfileCard</a>
+        <a onClick={() => changePageName("user1")}>ProfileCard</a>
       </li>
     </ul>
   );

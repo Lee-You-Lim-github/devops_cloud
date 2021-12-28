@@ -1,0 +1,34 @@
+[
+  {
+    "id": "user1",
+    "name": "빨간머리 앤",
+    "role": "배우",
+    "facebook_url": "1111.facebook",
+    "email": "1111@naver.com",
+    "profileImage": "./components/member1.jpg"
+  },
+  {
+    "id": "user2",
+    "name": "박봄",
+    "role": "가수",
+    "facebook_url": "2222.facebook",
+    "email": "2222@naver.com",
+    "profileImage": "./components/member1.jpg"
+  },
+  {
+    "id": "user3",
+    "name": "jonadan",
+    "role": "래퍼",
+    "facebook_url": "3333.facebook",
+    "email": "33334@naver.com",
+    "profileImage": "./components/member1.jpg"
+  },
+  {
+    "id": "user4",
+    "name": "fucci",
+    "role": "photograper",
+    "facebook_url": "4444.facebook",
+    "email": "4444@naver.com",
+    "profileImage": "./components/member1.jpg"
+  }
+]

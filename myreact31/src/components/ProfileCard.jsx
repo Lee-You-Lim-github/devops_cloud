@@ -6,7 +6,7 @@ import {
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
-import TopNav from "./TopNav";
+import profileImage1 from "./member1.jpg";
 
 function ProfileCard({
   name,
@@ -29,7 +29,7 @@ function ProfileCard({
           </a>
         </nav>
         <article className="profile">
-          <img src={profileImage} alt="프로필 이미지" />
+          <img src={profileImage1} alt="프로필 이미지" />
 
           <h1>{name}</h1>
           <h2>{role}</h2>
@@ -53,10 +53,10 @@ function ProfileCard({
           </li>
         </ul>
         <nav class="others">
-          <a onClick={() => changePageName("profile1")} class="on"></a>
-          <a onClick={() => changePageName("profile2")}></a>
-          <a onClick={() => changePageName("profile3")}></a>
-          <a onClick={() => changePageName("profile4")}></a>
+          <a onClick={() => changePageName("user1")} class="on"></a>
+          <a onClick={() => changePageName("user2")}></a>
+          <a onClick={() => changePageName("user3")}></a>
+          <a onClick={() => changePageName("user4")}></a>
         </nav>
       </section>
     </div>

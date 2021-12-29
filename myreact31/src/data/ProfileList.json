@@ -30,5 +30,21 @@
     "facebook_url": "4444.facebook",
     "email": "4444@naver.com",
     "profileImage": "./components/member1.jpg"
+  },
+  {
+    "id": "user5",
+    "name": "마리",
+    "role": "강아지",
+    "facebook_url": "5555.facebook",
+    "email": "5555@naver.com",
+    "profileImage": "./components/member1.jpg"
+  },
+  {
+    "id": "user6",
+    "name": "sdfaf",
+    "role": "고양이",
+    "facebook_url": "6666.facebook",
+    "email": "6666@naver.com",
+    "profileImage": "./components/member1.jpg"
   }
 ]

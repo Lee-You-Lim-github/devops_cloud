@@ -9,7 +9,6 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import profileImage1 from "./member1.jpg";
 
 function ProfileCard({
-  id,
   name,
   role,
   profileImage,
@@ -20,7 +19,7 @@ function ProfileCard({
   return (
     <>
       <h2>Profile Card</h2>
-      <div className={id}>
+      <div>
         <section>
           <nav className="menu">
             <a href="#">
@@ -54,11 +53,13 @@ function ProfileCard({
               </span>
             </li>
           </ul>
-          <nav class="others">
-            <a onClick={() => changePageProfile("user1")} class="on"></a>
+          <nav className="others">
+            <a onClick={() => changePageProfile("user1")} className="on"></a>
             <a onClick={() => changePageProfile("user2")}></a>
             <a onClick={() => changePageProfile("user3")}></a>
             <a onClick={() => changePageProfile("user4")}></a>
+            <a onClick={() => changePageProfile("user5")}></a>
+            <a onClick={() => changePageProfile("user6")}></a>
           </nav>
         </section>
       </div>

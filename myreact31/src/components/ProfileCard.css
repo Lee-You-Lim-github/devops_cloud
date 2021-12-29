@@ -167,6 +167,16 @@ section nav.others a:nth-of-type(4) {
   box-shadow: 5px 5px 10px regba(167, 148, 153, 0.7);
 }
 
+section nav.others a:nth-of-type(5) {
+  background-color: #a794fd;
+  box-shadow: 5px 5px 10px regba(167, 148, 153, 0.7);
+}
+
+section nav.others a:nth-of-type(6) {
+  background-color: #a794fd;
+  box-shadow: 5px 5px 10px regba(167, 148, 153, 0.7);
+}
+
 /* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 section nav.others a {
   display: inline-block;
@@ -183,55 +193,59 @@ section nav.others a.on {
   filter: saturate(1);
 }
 
-div.user1 {
+div.member1 {
   background-color: #ebfaff;
+  padding: 50px;
 }
 
-div.user1 section article.profile img {
+div.member1 section article.profile img {
   box-shadow: 5px 15px 30px rgba(173, 216, 230, 0.8);
 }
 
-div.user1 section a.btnView {
+div.member1 section a.btnView {
   background: linear-gradient(45deg, #4affff, #35e0f7);
   box-shadow: 5px 10px 20px rgba(0, 255, 255, 0.493);
 }
 
-div.user2 {
+div.member2 {
   background-color: #edffeb;
+  padding: 50px;
 }
 
-div.user2 section article.profile img {
+div.member2 section article.profile img {
   box-shadow: 5px 15px 20px #bdccb783;
 }
 
-div.user2 section a.btnView {
+div.member2 section a.btnView {
   background: linear-gradient(45deg, #a0ff9d, #55f5b2);
   box-shadow: 5px 10px 20px rgba(33, 250, 105, 0.3);
 }
 
-div.user3 {
+div.member3 {
   background-color: #fff3fd;
+  padding: 50px;
 }
 
-div.user3 section article.profile img {
+div.member3 section article.profile img {
   box-shadow: 5px 15px 20px rgba(252, 99, 214, 0.2);
 }
 
-div.user3 section a.btnView {
+div.member3 section a.btnView {
   background: linear-gradient(45deg, #ef74ff, #ff11c4);
   box-shadow: 5px 10px 20px rgba(255, 17, 196, 0.357);
 }
 
 /* member4 */
-div.user4 {
+div.member4 {
   background-color: #f5f0ff;
+  padding: 50px;
 }
 
-div.user4 section article.profile img {
+div.member4 section article.profile img {
   box-shadow: 5px 15px 20px rgba(183, 82, 250, 0.2);
 }
 
-div.user4 section a.btnView {
+div.member4 section a.btnView {
   background: linear-gradient(45deg, #8e74ff, #a011ff);
   box-shadow: 5px 10px 20px rgba(160, 17, 255, 0.4);
 }

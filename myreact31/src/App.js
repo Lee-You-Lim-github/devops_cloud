@@ -9,19 +9,25 @@ import TopNav from "components/TopNav";
 import ProfileList from "./data/ProfileList.json";
 
 function App() {
-  const [pageName, setPageName] = useState("user1");
+  const [pageName, setPageName] = useState();
   const [selectProfileName, setSelectProfileName] = useState("user1");
 
   return (
     <div>
-      <TopNav changePageName={(setPageName, setSelectProfileName)} />
+      <TopNav changePageName={setPageName} />
       {pageName === "lotto" && <PageLotto />}
-      {pageName}
+
       <hr />
-      {ProfileList.map((list) => {
-        if (selectProfileName === list.id) {
+
+      {ProfileList.map((profile, index) => {
+        if (selectProfileName === profile.id) {
           return (
-            <ProfileCard {...list} changePageProfile={setSelectProfileName} />
+            <div key={profile.id} className={`member${(index % 4) + 1}`}>
+              <ProfileCard
+                {...profile}
+                changePageProfile={setSelectProfileName}
+              />
+            </div>
           );
         }
       })}

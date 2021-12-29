@@ -83,6 +83,14 @@ section article.profile h2 {
   font-size: 12px;
   font-family: "arial";
   color: #bbb;
+  margin-bottom: 5px;
+}
+
+section article.profile h3 {
+  font-weight: normal;
+  font-size: 12px;
+  font-family: "arial";
+  color: rgb(248, 140, 140);
   margin-bottom: 30px;
 }
 
@@ -173,6 +181,10 @@ section nav.others a:nth-of-type(5) {
 }
 
 section nav.others a:nth-of-type(6) {
+  background-color: #a794fd;
+  box-shadow: 5px 5px 10px regba(167, 148, 153, 0.7);
+}
+section nav.others a:nth-of-type(7) {
   background-color: #a794fd;
   box-shadow: 5px 5px 10px regba(167, 148, 153, 0.7);
 }

@@ -1,19 +1,15 @@
 import "./ProfileCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faStickyNote,
-  faEnvelope,
-} from "@fortawesome/free-solid-svg-icons";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faBars, faStickyNote } from "@fortawesome/free-solid-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 function ProfileCard({
   children,
   name,
   role,
-  profileImage,
-  facebookUrl,
-  email,
+  profile_image_url,
+  instagram_url,
+  mbti,
 }) {
   return (
     <>
@@ -29,10 +25,11 @@ function ProfileCard({
             </a>
           </nav>
           <article className="profile">
-            <img src={profileImage} alt="프로필 이미지" />
+            <img src={profile_image_url} alt="프로필 이미지" />
 
             <h1>{name}</h1>
             <h2>{role}</h2>
+            <h3>{mbti}</h3>
 
             <a href="#" className="btnView">
               VIEW MORE
@@ -40,15 +37,9 @@ function ProfileCard({
           </article>
           <ul className="contact">
             <li>
-              <FontAwesomeIcon icon={faFacebook} />
+              <FontAwesomeIcon icon={faInstagram} />
               <span>
-                <a href="{facebook_url}">{facebookUrl}</a>
-              </span>
-            </li>
-            <li>
-              <FontAwesomeIcon icon={faEnvelope} />
-              <span>
-                <a href={`mailto:${email}`}>{email}</a>
+                <a href="{instagram_url}">{instagram_url}</a>
               </span>
             </li>
           </ul>

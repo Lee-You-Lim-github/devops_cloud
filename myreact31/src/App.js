@@ -18,11 +18,13 @@ function App() {
           return (
             <div key={profile.id} className={`member${(index % 4) + 1}`}>
               <ProfileCard {...profile}>
-                {profileList.map((click) => {
+                {profileList.map((nav_profile) => {
                   return (
                     <a
-                      onClick={() => setSelectProfileName(click.id)}
-                      className="on"
+                      onClick={() => setSelectProfileName(nav_profile.id)}
+                      className={
+                        selectProfileName === nav_profile.id ? "on" : ""
+                      }
                     ></a>
                   );
                 })}

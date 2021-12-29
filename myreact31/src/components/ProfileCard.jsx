@@ -6,15 +6,14 @@ import {
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
-import profileImage1 from "./member1.jpg";
 
 function ProfileCard({
+  children,
   name,
   role,
   profileImage,
-  facebook_url,
+  facebookUrl,
   email,
-  changePageProfile,
 }) {
   return (
     <>
@@ -30,7 +29,7 @@ function ProfileCard({
             </a>
           </nav>
           <article className="profile">
-            <img src={profileImage1} alt="프로필 이미지" />
+            <img src={profileImage} alt="프로필 이미지" />
 
             <h1>{name}</h1>
             <h2>{role}</h2>
@@ -43,7 +42,7 @@ function ProfileCard({
             <li>
               <FontAwesomeIcon icon={faFacebook} />
               <span>
-                <a href="{facebook_url}">{facebook_url}</a>
+                <a href="{facebook_url}">{facebookUrl}</a>
               </span>
             </li>
             <li>
@@ -53,14 +52,7 @@ function ProfileCard({
               </span>
             </li>
           </ul>
-          <nav className="others">
-            <a onClick={() => changePageProfile("user1")} className="on"></a>
-            <a onClick={() => changePageProfile("user2")}></a>
-            <a onClick={() => changePageProfile("user3")}></a>
-            <a onClick={() => changePageProfile("user4")}></a>
-            <a onClick={() => changePageProfile("user5")}></a>
-            <a onClick={() => changePageProfile("user6")}></a>
-          </nav>
+          <nav className="others">{children}</nav>
         </section>
       </div>
     </>

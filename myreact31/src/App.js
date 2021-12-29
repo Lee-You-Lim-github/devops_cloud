@@ -1,32 +1,33 @@
 import PageLotto from "./pages/PageLotto";
 import ProfileCard from "./components/ProfileCard";
-import profileImage1 from "./components/member1.jpg";
-import profileImage2 from "./components/member2.jpg";
-import profileImage3 from "./components/member3.jpg";
-import profileImage4 from "./components/member4.jpg";
 import { useState } from "react";
 import TopNav from "components/TopNav";
 import ProfileList from "./data/ProfileList.json";
 
 function App() {
-  const [pageName, setPageName] = useState();
-  const [selectProfileName, setSelectProfileName] = useState("user1");
+  const [pageName, setPageName] = useState("user1");
+  const [selectProfileName, setSelectProfileName] = useState(ProfileList[0].id);
 
   return (
     <div>
       <TopNav changePageName={setPageName} />
       {pageName === "lotto" && <PageLotto />}
-
       <hr />
-
       {ProfileList.map((profile, index) => {
         if (selectProfileName === profile.id) {
           return (
             <div key={profile.id} className={`member${(index % 4) + 1}`}>
-              <ProfileCard
-                {...profile}
-                changePageProfile={setSelectProfileName}
-              />
+              <ProfileCard {...profile}>
+                <a
+                  onClick={() => setSelectProfileName("user1")}
+                  className="on"
+                ></a>
+                <a onClick={() => setSelectProfileName("user2")}></a>
+                <a onClick={() => setSelectProfileName("user3")}></a>
+                <a onClick={() => setSelectProfileName("user4")}></a>
+                <a onClick={() => setSelectProfileName("user5")}></a>
+                <a onClick={() => setSelectProfileName("user6")}></a>
+              </ProfileCard>
             </div>
           );
         }

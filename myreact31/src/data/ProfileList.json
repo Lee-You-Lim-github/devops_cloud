@@ -3,48 +3,48 @@
     "id": "user1",
     "name": "빨간머리 앤",
     "role": "배우",
-    "facebook_url": "1111.facebook",
+    "facebookUrl": "1111.facebook",
     "email": "1111@naver.com",
-    "profileImage": "./components/member1.jpg"
+    "profileImage": "/profile-images/member1.jpg"
   },
   {
     "id": "user2",
     "name": "박봄",
     "role": "가수",
-    "facebook_url": "2222.facebook",
+    "facebookUrl": "2222.facebook",
     "email": "2222@naver.com",
-    "profileImage": "./components/member1.jpg"
+    "profileImage": "/profile-images/member2.jpg"
   },
   {
     "id": "user3",
     "name": "jonadan",
     "role": "래퍼",
-    "facebook_url": "3333.facebook",
+    "facebookUrl": "3333.facebook",
     "email": "33334@naver.com",
-    "profileImage": "./components/member1.jpg"
+    "profileImage": "/profile-images/member3.jpg"
   },
   {
     "id": "user4",
     "name": "fucci",
     "role": "photograper",
-    "facebook_url": "4444.facebook",
+    "facebookUrl": "4444.facebook",
     "email": "4444@naver.com",
-    "profileImage": "./components/member1.jpg"
+    "profileImage": "/profile-images/member4.jpg"
   },
   {
     "id": "user5",
     "name": "마리",
     "role": "강아지",
-    "facebook_url": "5555.facebook",
+    "facebookUrl": "5555.facebook",
     "email": "5555@naver.com",
-    "profileImage": "./components/member1.jpg"
+    "profileImage": "/profile-images/member1.jpg"
   },
   {
     "id": "user6",
     "name": "sdfaf",
     "role": "고양이",
-    "facebook_url": "6666.facebook",
+    "facebookUrl": "6666.facebook",
     "email": "6666@naver.com",
-    "profileImage": "./components/member1.jpg"
+    "profileImage": "/profile-images/member1.jpg"
   }
 ]

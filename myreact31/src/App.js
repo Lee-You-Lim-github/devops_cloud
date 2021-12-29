@@ -10,18 +10,21 @@ import ProfileList from "./data/ProfileList.json";
 
 function App() {
   const [pageName, setPageName] = useState("user1");
+  const [selectProfileName, setSelectProfileName] = useState("user1");
 
   return (
     <div>
-      <TopNav changePageName={setPageName} />
+      <TopNav changePageName={(setPageName, setSelectProfileName)} />
       {pageName === "lotto" && <PageLotto />}
+      {pageName}
       <hr />
       {ProfileList.map((list) => {
-        if (pageName === list.id) {
-          return <ProfileCard {...list} changePageName={setPageName} />;
+        if (selectProfileName === list.id) {
+          return (
+            <ProfileCard {...list} changePageProfile={setSelectProfileName} />
+          );
         }
       })}
-      ;
     </div>
   );
 }

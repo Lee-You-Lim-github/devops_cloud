@@ -4,13 +4,13 @@ import Axios from 'axios';
 function PageProfile() {
   const [profileList, setProfileList] = useState([]);
 
-  useEffect(() => {
+  const handleRefresh = () => {
     Axios.get(
       'https://classdevopscloud.blob.core.windows.net/data/profile-list.json',
     )
 
       .then((response) => {
-        const bts = response.data.map((axios_profile) => ({
+        const bts_profile = response.data.map((axios_profile) => ({
           name: axios_profile.name,
           role: axios_profile.role,
           mbti: axios_profile.mbti,
@@ -18,12 +18,14 @@ function PageProfile() {
           instagramUrl: axios_profile.instagram_url,
           profileImageUrl: axios_profile.profile_image_url,
         }));
-        setProfileList(bts);
+        setProfileList(bts_profile);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  };
+
+  useEffect(() => handleRefresh(), []);
 
   return (
     <div>
@@ -37,6 +39,7 @@ function PageProfile() {
       >
         CLEAR
       </button>
+      <button onClick={handleRefresh}>새로고침</button>
       {profileList.map((profile) => {
         return (
           <div key={profile.uniqueId}>

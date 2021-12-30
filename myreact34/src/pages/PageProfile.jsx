@@ -28,7 +28,15 @@ function PageProfile() {
   return (
     <div>
       <h2>PageProfile</h2>
+
       {profileList.length === 0 && <h1>등록된 프로필이 없습니다.</h1>}
+      <button
+        onClick={() => {
+          setProfileList([]);
+        }}
+      >
+        CLEAR
+      </button>
       {profileList.map((profile) => {
         return (
           <div key={profile.uniqueId}>

@@ -1,26 +1,12 @@
 import { useState } from 'react';
 
 function PageProfile() {
-  const [profileList, setProfileList] = useState([
-    {
-      uniqueid: 'bts-jin',
-      name: '진',
-      role: '서브보컬',
-      mbit: 'INFP',
-      instagramUrl: 'https://instagram.com/jin',
-      profileImageUrl:
-        'https://classdevopscloud.blob.core.windows.net/data/bts-jin.jpg',
-    },
-  ]);
-
-  //   useEffect(() => {
-
-  //   }, []);
+  const [profileList, setProfileList] = useState([]);
 
   return (
     <div>
       <h2>PageProfile</h2>
-
+      {profileList.length === 0 && <h1>등록된 프로필이 없습니다.</h1>}
       {profileList.map((profile) => {
         return (
           <div key={profile.uniqueid}>

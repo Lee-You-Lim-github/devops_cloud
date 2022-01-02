@@ -4,12 +4,13 @@ import Axios from 'axios';
 function PageProfile() {
   const [profileList, setProfileList] = useState([]);
   const [checkError, setCheckError] = useState(null);
+  const [profileSearch, setProfileSearch] = useState([]);
 
   const handleRefresh = () => {
     setCheckError(null);
 
     Axios.get(
-      'https://classdevopscloud.blob.core.chrome.net/data/profile-list.json',
+      'https://classdevopscloud.blob.core.windows.net/data/profile-list.json',
     )
 
       .then((response) => {
@@ -30,6 +31,11 @@ function PageProfile() {
 
   useEffect(() => handleRefresh(), []);
 
+  const handleKeyChange = (e) => {
+    const value = e.target.value;
+    console.log(value);
+  };
+
   return (
     <div>
       <h2>PageProfile</h2>
@@ -39,6 +45,11 @@ function PageProfile() {
       {profileList.length === 0 && <h1>등록된 프로필이 없습니다.</h1>}
       <button onClick={() => setProfileList([])}>CLEAR</button>
       <button onClick={handleRefresh}>새로고침</button>
+      <input
+        type="text"
+        placeholder="검색어를 입력해주세요."
+        onChange={handleKeyChange}
+      />
       {profileList.map((profile) => {
         return (
           <div key={profile.uniqueId}>

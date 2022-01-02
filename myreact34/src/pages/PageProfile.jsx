@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Axios from 'axios';
 
+import ProfileList from 'components/ProfileList';
+
 function PageProfile() {
   const [profileList, setProfileList] = useState([]);
   const [checkError, setCheckError] = useState(null);
@@ -62,30 +64,18 @@ function PageProfile() {
 
       {checkError && `에러 메세지: ${checkError.message}`}
 
-      {profileList.length === 0 && <h1>등록된 프로필이 없습니다.</h1>}
       <button onClick={() => setProfileList([])}>CLEAR</button>
       <button onClick={handleRefresh}>새로고침</button>
-      <input
-        type="text"
-        placeholder="검색어를 입력해주세요."
-        onChange={handleKeyChange}
-        onKeyPress={handleKeyPress}
-      />
-      {profileList.map((profile) => {
-        return (
-          <div key={profile.uniqueId}>
-            <section>
-              <ul>
-                <h3>{profile.name}</h3>
-                <li>{profile.role}</li>
-                <li>{profile.mbti}</li>
-                <li>인스타그램 주소:{profile.instagramUrl}</li>
-                <img src={profile.profileImageUrl} />
-              </ul>
-            </section>
-          </div>
-        );
-      })}
+      <hr />
+      <div>
+        <input
+          type="text"
+          placeholder="검색어를 입력해주세요."
+          onChange={handleKeyChange}
+          onKeyPress={handleKeyPress}
+        />
+      </div>
+      <ProfileList profileList={profileList} />
     </div>
   );
 }

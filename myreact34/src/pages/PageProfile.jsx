@@ -3,10 +3,13 @@ import Axios from 'axios';
 
 function PageProfile() {
   const [profileList, setProfileList] = useState([]);
+  const [checkError, setCheckError] = useState(null);
 
   const handleRefresh = () => {
+    setCheckError(null);
+
     Axios.get(
-      'https://classdevopscloud.blob.core.windows.net/data/profile-list.json',
+      'https://classdevopscloud.blob.core.chrome.net/data/profile-list.json',
     )
 
       .then((response) => {
@@ -21,7 +24,7 @@ function PageProfile() {
         setProfileList(bts_profile);
       })
       .catch((error) => {
-        console.error(error);
+        setCheckError(error);
       });
   };
 
@@ -31,14 +34,10 @@ function PageProfile() {
     <div>
       <h2>PageProfile</h2>
 
+      {checkError && `에러 메세지: ${checkError.message}`}
+
       {profileList.length === 0 && <h1>등록된 프로필이 없습니다.</h1>}
-      <button
-        onClick={() => {
-          setProfileList([]);
-        }}
-      >
-        CLEAR
-      </button>
+      <button onClick={() => setProfileList([])}>CLEAR</button>
       <button onClick={handleRefresh}>새로고침</button>
       {profileList.map((profile) => {
         return (

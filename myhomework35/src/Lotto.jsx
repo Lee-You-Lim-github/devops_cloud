@@ -15,8 +15,14 @@ function reducer(prevValue, action) {
     .map(({ number }) => number + 1)
     .sort((num1, num2) => num1 - num2);
 
+  function shuffleArray(random_array) {
+    return random_array.sort(() => Math.random() - Math.random());
+  }
+
   if (type === "GENERATE_NUMBERS") {
     return { ...prevValue, numbers: lottoNumbers };
+  } else if (type === "SHUFFLE_NUMBERS") {
+    return { ...prevValue, numbers: shuffleArray(prevValue.numbers) };
   }
 }
 
@@ -39,6 +45,10 @@ function Lotto() {
     dispatch({ type: "GENERATE_NUMBERS" });
   };
 
+  const shuffleNumbers = () => {
+    dispatch({ type: "SHUFFLE_NUMBERS" });
+  };
+
   return (
     <div>
       <h1>7개의 숫자</h1>
@@ -49,6 +59,7 @@ function Lotto() {
       ))}
       <hr />
       <button onClick={generateNumbers}>랜덤 숫자</button>
+      <button onClick={shuffleNumbers}>숫자 섞기</button>
     </div>
   );
 }

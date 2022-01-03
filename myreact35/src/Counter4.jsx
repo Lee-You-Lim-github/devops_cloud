@@ -4,39 +4,59 @@ function Counter4() {
   const [state, setState] = useState({ value: 0, color: "red" });
   const { value, color } = state;
 
+  // const handlePlus = () => {
+  //   return setState({
+  //     ...state,
+  //     value: state.value + 1,
+  //   });
+  // };
+
+  // const handleMinus = () => {
+  //   return setState({
+  //     ...state,
+  //     value: state.value - 1,
+  //   });
+  // };
+
   const handlePlus = () => {
-    return setState({
-      ...state,
-      value: state.value + 1,
-    });
+    setState((prevState) => ({ ...prevState, value: state.value + 1 }));
   };
 
   const handleMinus = () => {
-    return setState({
-      ...state,
-      value: state.value - 1,
-    });
+    setState((prevState) => ({ ...prevState, value: state.value - 1 }));
   };
 
+  // const handleGreen = () => {
+  //   return setState({
+  //     ...state,
+  //     color: "green",
+  //   });
+  // };
+
+  // const handleBlue = () => {
+  //   return setState({
+  //     ...state,
+  //     color: "blue",
+  //   });
+  // };
+
+  // const handleRed = () => {
+  //   return setState({
+  //     ...state,
+  //     color: "red",
+  //   });
+  // };
+
   const handleGreen = () => {
-    return setState({
-      ...state,
-      color: "green",
-    });
+    return setState((prevState) => ({ ...prevState, color: "green" }));
   };
 
   const handleBlue = () => {
-    return setState({
-      ...state,
-      color: "blue",
-    });
+    return setState((prevState) => ({ ...prevState, color: "blue" }));
   };
 
   const handleRed = () => {
-    return setState({
-      ...state,
-      color: "red",
-    });
+    return setState((prevState) => ({ ...prevState, color: "red" }));
   };
 
   return (

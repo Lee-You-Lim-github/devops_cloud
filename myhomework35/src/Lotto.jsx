@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 
 function reducer(prevValue, action) {
-  // const { numbers, colors } = prevValue;
+  const { numbers, colors } = prevValue;
   const { type } = action;
   const lottoArray = [...Array(45).keys()];
 
@@ -15,15 +15,20 @@ function reducer(prevValue, action) {
     .map(({ number }) => number + 1)
     .sort((num1, num2) => num1 - num2);
 
-  function shuffleArray(random_array) {
-    return random_array.sort(() => Math.random() - Math.random());
-  }
-
   if (type === "GENERATE_NUMBERS") {
     return { ...prevValue, numbers: lottoNumbers };
   } else if (type === "SHUFFLE_NUMBERS") {
-    return { ...prevValue, numbers: shuffleArray(prevValue.numbers) };
+    return {
+      ...prevValue,
+      numbers: numbers.sort(() => Math.random() - Math.random()),
+    };
+  } else if (type === "SHUFFLE_COLORS") {
+    return {
+      ...prevValue,
+      colors: colors.sort(() => Math.random() - Math.random()),
+    };
   }
+  // return prevValue;
 }
 
 function Lotto() {
@@ -39,7 +44,7 @@ function Lotto() {
       "pink",
     ],
   });
-  const { numbers, colors } = prevValue;
+  // const { numbers, colors } = prevValue;
 
   const generateNumbers = () => {
     dispatch({ type: "GENERATE_NUMBERS" });
@@ -49,17 +54,24 @@ function Lotto() {
     dispatch({ type: "SHUFFLE_NUMBERS" });
   };
 
+  const shuffleColor = () => {
+    dispatch({ type: "SHUFFLE_COLORS " });
+  };
+
   return (
     <div>
       <h1>7개의 숫자</h1>
-      {numbers.map((nums, index) => (
-        <span style={{ ...defaultStyle, backgroundColor: colors[index] }}>
+      {prevValue.numbers.map((nums, index) => (
+        <span
+          style={{ ...defaultStyle, backgroundColor: prevValue.colors[index] }}
+        >
           {nums}
         </span>
       ))}
       <hr />
       <button onClick={generateNumbers}>랜덤 숫자</button>
       <button onClick={shuffleNumbers}>숫자 섞기</button>
+      <button onClick={shuffleColor}>색깔 섞기</button>
     </div>
   );
 }

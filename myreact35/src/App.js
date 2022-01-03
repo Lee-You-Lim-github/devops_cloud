@@ -1,7 +1,7 @@
-import Counter4 from "./Counter4";
+import Counter5 from "./Counter5";
 
 function App() {
-  return <Counter4 initialValue={10} />;
+  return <Counter5 initialValue={10} />;
 }
 
 export default App;

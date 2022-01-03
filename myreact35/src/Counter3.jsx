@@ -3,12 +3,20 @@ import { useState } from "react";
 function Counter3() {
   const [value, setValue] = useState(0);
 
+  // const handlePlus = () => {
+  //   return setValue(value + 1);
+  // };
+
+  // const handleMinus = () => {
+  //   return setValue(value - 1);
+  // };
+
   const handlePlus = () => {
-    return setValue(value + 1);
+    setValue((prevValue) => prevValue + 1);
   };
 
   const handleMinus = () => {
-    return setValue(value - 1);
+    setValue((prevValue) => prevValue - 1);
   };
 
   return (

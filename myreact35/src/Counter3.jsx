@@ -21,16 +21,27 @@ function Counter3() {
   };
 
   // COLOR: ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  // const handleGreen = () => {
+  //   return setColor("green");
+  // };
+
+  // const handleBlue = () => {
+  //   return setColor("blue");
+  // };
+
+  // const handleRed = () => {
+  //   return setColor("red");
+  // };
+
   const handleGreen = () => {
-    return setColor("green");
+    setColor(() => "green");
   };
 
   const handleBlue = () => {
-    return setColor("blue");
+    setColor(() => "blue");
   };
-
   const handleRed = () => {
-    return setColor("red");
+    setColor(() => "red");
   };
 
   return (

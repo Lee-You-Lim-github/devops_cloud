@@ -19,11 +19,11 @@ function Counter4() {
   // };
 
   const handlePlus = () => {
-    setState((prevState) => ({ ...prevState, value: state.value + 1 }));
+    setState((prevState) => ({ ...prevState, value: prevState.value + 1 }));
   };
 
   const handleMinus = () => {
-    setState((prevState) => ({ ...prevState, value: state.value - 1 }));
+    setState((prevState) => ({ ...prevState, value: prevState.value - 1 }));
   };
 
   // const handleGreen = () => {

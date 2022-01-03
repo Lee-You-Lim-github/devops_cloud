@@ -62,5 +62,6 @@ const defaultStyle = {
   display: "inline-block",
   fontSize: "3rem",
   userSelect: "none",
+  margin: "1rem",
 };
 export default Lotto;

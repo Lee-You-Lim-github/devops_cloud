@@ -1,28 +1,30 @@
 import { useReducer } from "react";
 
+const ACTION_TYPES = {
+  GENERATE_NUMBERS: "GENERATE_NUMBERS",
+  SHUFFLE_COLORS: "SHUFFLE_COLORS",
+  SHUFFLE_COLORS: "SHUFFLE_COLORS",
+};
+
 function reducer(prevValue, action) {
   const { numbers, colors } = prevValue;
   const { type } = action;
   const lottoArray = [...Array(45).keys()];
 
   const lottoNumbers = lottoArray
-    .map((number) => ({
-      number,
-      random: Math.random(),
-    }))
-    .sort((a, b) => a.random - b.random)
+    .map((number) => number + 1)
+    .sort(() => Math.random() - Math.random())
     .slice(0, 7)
-    .map(({ number }) => number + 1)
     .sort((num1, num2) => num1 - num2);
 
-  if (type === "GENERATE_NUMBERS") {
+  if (type === ACTION_TYPES.GENERATE_NUMBERS) {
     return { ...prevValue, numbers: lottoNumbers };
-  } else if (type === "SHUFFLE_NUMBERS") {
+  } else if (type === ACTION_TYPES.SHUFFLE_NUMBERS) {
     return {
       ...prevValue,
       numbers: numbers.sort(() => Math.random() - Math.random()),
     };
-  } else if (type === "SHUFFLE_COLORS") {
+  } else if (type === ACTION_TYPES.SHUFFLE_COLORS) {
     return {
       ...prevValue,
       colors: colors.sort(() => Math.random() - Math.random()),
@@ -47,14 +49,17 @@ function Lotto() {
   // const { numbers, colors } = prevValue;
 
   const generateNumbers = () => {
+    // setState((prevState) => reducer(prevState, action));    // reducer만 사용했을 경우
     dispatch({ type: "GENERATE_NUMBERS" });
   };
 
   const shuffleNumbers = () => {
+    // setState((prevState) => reducer(prevState, action));    // reducer만 사용했을 경우
     dispatch({ type: "SHUFFLE_NUMBERS" });
   };
 
   const shuffleColor = () => {
+    // setState((prevState) => reducer(prevState, action));    // reducer만 사용했을 경우
     dispatch({ type: "SHUFFLE_COLORS" });
   };
 

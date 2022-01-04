@@ -55,7 +55,7 @@ function Lotto() {
   };
 
   const shuffleColor = () => {
-    dispatch({ type: "SHUFFLE_COLORS " });
+    dispatch({ type: "SHUFFLE_COLORS" });
   };
 
   return (

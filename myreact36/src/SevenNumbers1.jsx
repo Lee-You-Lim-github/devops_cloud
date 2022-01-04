@@ -62,6 +62,14 @@ function SevenNumbers1({ title }) {
     }));
   };
 
+  const deleteCircle = (circleIndex) => {
+    setState((prevState) => ({
+      ...prevState,
+      numbers: prevState.numbers.filter((num, index) => circleIndex !== index),
+      colors: prevState.colors.filter((col, index) => circleIndex !== index),
+    }));
+  };
+
   return (
     <div>
       {title && <h2>{title}</h2>}
@@ -72,7 +80,7 @@ function SevenNumbers1({ title }) {
           onClick={() => changeCircleColor(index)}
           onContextMenu={(e) => {
             e.preventDefault();
-            console.log("right clicked");
+            deleteCircle(index);
           }}
         />
       ))}

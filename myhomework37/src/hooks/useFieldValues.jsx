@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function useFieldValues() {
-  const [fieldValues, setFieldValuse] = useState({});
+function useFieldValues(initial) {
+  const [fieldValues, setFieldValuse] = useState(initial);
 
   const handleChange = (e) => {
     console.log(e.target.value);

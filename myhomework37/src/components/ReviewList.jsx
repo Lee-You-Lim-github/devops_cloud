@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Review from "./Review";
 
 const INITIAL_REVIEW = [
   { text: "내적 댄스를 불러일으키는 영화" },
@@ -12,8 +13,8 @@ function ReviewList() {
     <div>
       <h1>Sing 2</h1>
       <h2>Review List</h2>
-      {reviewList.map((reivew) => (
-        <div>{reivew.text}</div>
+      {reviewList.map((review) => (
+        <Review review={review} />
       ))}
     </div>
   );

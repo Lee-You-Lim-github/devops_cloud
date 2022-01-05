@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Review from "./Review";
 import "./ReviewList.css";
+import ReviewForm from "./ReviewForm";
 
 const INITIAL_REVIEW = [
   { text: "내적 댄스를 불러일으키는 영화" },
@@ -10,10 +11,23 @@ const INITIAL_REVIEW = [
 
 function ReviewList() {
   const [reviewList, setReviewList] = useState(INITIAL_REVIEW);
+  const [pageName, setPageName] = useState("");
+
+  const changePageName = (pageName) => {
+    setPageName("review_form");
+  };
+
   return (
     <div className="review-list">
       <h1>Sing 2</h1>
       <h2 className="text-lg underline">Review List</h2>
+      <button
+        className="bg-red-500 text-gray-100 cursor-pointer"
+        onClick={changePageName}
+      >
+        리뷰 작성
+      </button>
+      {pageName === "review_form" && <ReviewForm />}
       {reviewList.map((review) => (
         <Review review={review} />
       ))}

@@ -17,6 +17,7 @@ function Todo({ todo, onClick }) {
       cursor-pointer"
       onClick={onClick}
     >
+      {todo.color}
       {todo.content}
     </div>
   );

@@ -33,13 +33,8 @@ function ReviewList() {
   return (
     <div className="review-list">
       <h1>Sing 2</h1>
-      <h2 className="text-lg underline">Review List</h2>
-      <button
-        className="bg-red-500 text-gray-100 cursor-pointer"
-        onClick={changePageName}
-      >
-        리뷰 작성
-      </button>
+      <h2 class="text-xl mb-2 border-b-2 border-orange-500">Review List</h2>
+
       {pageName === "review_form" && (
         <ReviewForm
           handleChange={handleChange}
@@ -47,7 +42,13 @@ function ReviewList() {
           handleSubmit={appendReview}
         />
       )}
-      <hr />
+      <button
+        className="bg-orange-200 hover:bg-orange-400 p-1 rounded text-sm cursor-point"
+        onClick={changePageName}
+      >
+        리뷰 작성
+      </button>
+
       {JSON.stringify(fieldValues)}
       {reviewList.map((review) => (
         <Review review={review} />

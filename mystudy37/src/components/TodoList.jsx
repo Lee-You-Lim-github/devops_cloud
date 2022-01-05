@@ -2,6 +2,7 @@ import useFieldValues from "hooks/useFieldValues";
 import { useState } from "react";
 import Todo from "./Todo";
 import TodoForm from "./TodoForm";
+import "./TodoList.css";
 
 const INITIAL_STATE = [
   { content: "파이썬 익히기", color: "blue" },
@@ -33,7 +34,7 @@ function TodoList() {
   };
 
   return (
-    <div>
+    <div className="todo-list">
       <h2>Todo List</h2>
 
       <hr />

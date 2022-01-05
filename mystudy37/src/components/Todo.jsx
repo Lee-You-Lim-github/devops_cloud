@@ -4,8 +4,6 @@ function Todo({ todo, onClick }) {
   return (
     <div
       className="
-      bg-blue-200 
-      hover:bg-blue-400 
       m-1 
       p-1 
       rounded-lg 
@@ -15,6 +13,7 @@ function Todo({ todo, onClick }) {
       hover:border-blue-500 
       hover:scale-105 
       cursor-pointer"
+      style={{ backgroundColor: todo.color }}
       onClick={onClick}
     >
       {todo.color}

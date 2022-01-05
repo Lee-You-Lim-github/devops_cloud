@@ -21,6 +21,9 @@ function TodoForm({ fieldValues, handleChange, handleSubmit }) {
         <option>blue</option>
         <option>red</option>
         <option>yellow</option>
+        <option>blueviolet</option>
+        <option>brown</option>
+        <option>coral</option>
       </select>
 
       <button

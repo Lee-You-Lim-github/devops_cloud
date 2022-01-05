@@ -1,3 +1,6 @@
+// 커스텀 훅을 만드는 이유:
+// useState() 재사용을 위해
+
 import { useState } from "react";
 
 function useFieldValues() {

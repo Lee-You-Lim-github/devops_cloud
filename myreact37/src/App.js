@@ -1,7 +1,13 @@
+import PageCounter from "pages/PageCounter";
+
 import "./App.css";
 
 function App() {
-  return <div className="App">Hello React</div>;
+  return (
+    <div className="App">
+      <PageCounter />
+    </div>
+  );
 }
 
 export default App;

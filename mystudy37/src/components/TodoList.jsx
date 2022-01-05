@@ -1,3 +1,4 @@
+import useFieldValues from "hooks/useFieldValues";
 import { useState } from "react";
 import Todo from "./Todo";
 import TodoForm from "./TodoForm";
@@ -10,7 +11,7 @@ const INITIAL_STATE = [
 
 function TodoList() {
   const [todoList, setTodoList] = useState(INITIAL_STATE);
-  const [inputText, setInputText] = useState("");
+  const [fieldValue, handleChange] = useFieldValues();
 
   const removeTodo = (todoIndex) => {
     setTodoList((prevTodoList) =>
@@ -18,26 +19,14 @@ function TodoList() {
     );
   };
 
-  // const changedInputText = (e) => {
-  //   setInputText(e.target.value);
-  //   console.log(e.target.value);
-  // };
-
-  // const appendInputText = (e) => {
-  //   if (e.key === "Enter") {
-  //     setTodoList((prevTodoList) => {
-  //       return [...prevTodoList, { content: inputText }];
-  //     });
-  //     setInputText("");
-  //   }
-  // };
-
   return (
     <div>
       <h2>Todo List</h2>
 
       <hr />
-      <TodoForm />
+      <TodoForm handleChange={handleChange} />
+      <hr />
+      {JSON.stringify(fieldValue)}
 
       {todoList.map((todo, index) => (
         <Todo todo={todo} onClick={() => removeTodo(index)} />

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Review from "./Review";
 import "./ReviewList.css";
 import ReviewForm from "./ReviewForm";
+import useFieldValues from "hooks/useFieldValues";
 
 const INITIAL_REVIEW = [
   { text: "내적 댄스를 불러일으키는 영화" },
@@ -10,8 +11,10 @@ const INITIAL_REVIEW = [
 ];
 
 function ReviewList() {
-  const [reviewList, setReviewList] = useState(INITIAL_REVIEW);
   const [pageName, setPageName] = useState("");
+  const [reviewList, setReviewList] = useState(INITIAL_REVIEW);
+
+  const [fieldValues, handleChange] = useFieldValues({});
 
   const changePageName = (pageName) => {
     setPageName("review_form");
@@ -27,7 +30,9 @@ function ReviewList() {
       >
         리뷰 작성
       </button>
-      {pageName === "review_form" && <ReviewForm />}
+      {pageName === "review_form" && <ReviewForm handleChange={handleChange} />}
+      <hr />
+      {JSON.stringify(fieldValues)}
       {reviewList.map((review) => (
         <Review review={review} />
       ))}

@@ -1,6 +1,6 @@
 // import { useState } from "react";
 
-function TodoForm({ handleChange }) {
+function TodoForm({ fieldValues, handleChange }) {
   //   const [fieldValues, setFieldValues] = useState({});
 
   //   const handleChange = (e) => {
@@ -23,9 +23,10 @@ function TodoForm({ handleChange }) {
         className="border-2 border-gray-400"
         onChange={handleChange}
         name="content"
+        value={fieldValues.content}
       />
 
-      <select onChange={handleChange} name="color">
+      <select onChange={handleChange} name="color" value={fieldValues.content}>
         <option>Amber</option>
         <option>Orange</option>
         <option>Yellow</option>

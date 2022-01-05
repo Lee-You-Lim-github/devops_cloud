@@ -23,6 +23,13 @@ function ReviewList() {
     setPageName("review_form");
   };
 
+  const appendReview = () => {
+    setReviewList((prevFieldValues) => [
+      ...prevFieldValues,
+      { ...fieldValues },
+    ]);
+  };
+
   return (
     <div className="review-list">
       <h1>Sing 2</h1>
@@ -34,7 +41,11 @@ function ReviewList() {
         리뷰 작성
       </button>
       {pageName === "review_form" && (
-        <ReviewForm handleChange={handleChange} fieldValues={fieldValues} />
+        <ReviewForm
+          handleChange={handleChange}
+          fieldValues={fieldValues}
+          handleSubmit={appendReview}
+        />
       )}
       <hr />
       {JSON.stringify(fieldValues)}

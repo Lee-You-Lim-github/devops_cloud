@@ -1,4 +1,4 @@
-function ReviewForm({ fieldValues, handleChange }) {
+function ReviewForm({ fieldValues, handleChange, handleSubmit }) {
   return (
     <div className="border-2 border-gray-200 p-3">
       <h1>Review Form</h1>
@@ -18,7 +18,10 @@ function ReviewForm({ fieldValues, handleChange }) {
           onChange={handleChange}
         ></textarea>
 
-        <button className="bg-red-500 text-gray-100 cursor-pointer">
+        <button
+          className="bg-red-500 text-gray-100 cursor-pointer"
+          onClick={() => handleSubmit()}
+        >
           저장하기
         </button>
       </div>

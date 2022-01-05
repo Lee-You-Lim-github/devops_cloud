@@ -14,7 +14,7 @@ function ReviewForm({ fieldValues, handleChange, handleSubmit }) {
           className="border-2 border-gray-200"
           type="text"
           name="text"
-          value={fieldValues.tex}
+          value={fieldValues.text}
           onChange={handleChange}
         ></textarea>
 

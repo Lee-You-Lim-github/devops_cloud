@@ -14,7 +14,7 @@ function ReviewList() {
   const [pageName, setPageName] = useState("");
   const [reviewList, setReviewList] = useState(INITIAL_REVIEW);
 
-  const [fieldValues, handleChange] = useFieldValues({
+  const [fieldValues, handleChange, clearFieldValues] = useFieldValues({
     text: "",
     score: 3,
   });
@@ -24,10 +24,10 @@ function ReviewList() {
   };
 
   const appendReview = () => {
-    setReviewList((prevFieldValues) => [
-      ...prevFieldValues,
-      { ...fieldValues },
-    ]);
+    const review = { ...fieldValues };
+
+    setReviewList((prevFieldValues) => [...prevFieldValues, review]);
+    clearFieldValues();
   };
 
   return (

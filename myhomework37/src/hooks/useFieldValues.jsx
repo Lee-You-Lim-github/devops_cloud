@@ -3,6 +3,8 @@ import { useState } from "react";
 function useFieldValues(initial) {
   const [fieldValues, setFieldValuse] = useState(initial);
 
+  const clearFieldValues = () => setFieldValuse(initial);
+
   const handleChange = (e) => {
     console.log(e.target.value);
     const { name, value } = e.target;
@@ -11,7 +13,7 @@ function useFieldValues(initial) {
       [name]: value,
     }));
   };
-  return [fieldValues, handleChange];
+  return [fieldValues, handleChange, clearFieldValues];
 }
 
 export default useFieldValues;

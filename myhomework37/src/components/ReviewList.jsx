@@ -64,7 +64,7 @@ function ReviewList() {
 
       {JSON.stringify(fieldValues)}
       {reviewList.map((review) => (
-        <Review review={review} />
+        <Review key={review.id} review={review} />
       ))}
     </div>
   );

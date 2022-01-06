@@ -3,10 +3,10 @@
 const FilledStar = () => {
   return (
     <svg
-      ariaHidden="true"
+      aria-hidden="true"
       focusable="false"
-      dataPrefix="fas"
-      dataIcon="star"
+      data-prefix="fas"
+      data-icon="star"
       class="w-4 text-yellow-500 mr-1"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
@@ -23,10 +23,10 @@ const FilledStar = () => {
 const EmptyStar = () => {
   return (
     <svg
-      ariaHidden="true"
+      aria-hidden="true"
       focusable="false"
-      dataPrefix="far"
-      dataIcon="star"
+      data-prefix="far"
+      data-icon="star"
       class="w-4 text-yellow-500"
       role="img"
       xmlns="http://www.w3.org/2000/svg"

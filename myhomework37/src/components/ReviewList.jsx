@@ -44,6 +44,9 @@ function ReviewList() {
   const deleteReview = (deletingReview) => {
     console.log("Deleting", deletingReview);
     //TODO : reviewList 배열 상탯값에서 deletingReivew
+    setReviewList((prevFieldValues) =>
+      prevFieldValues.filter((_, index) => deletingReview !== index)
+    );
   };
 
   return (
@@ -68,11 +71,11 @@ function ReviewList() {
       )}
 
       {JSON.stringify(fieldValues)}
-      {reviewList.map((review) => (
+      {reviewList.map((review, index) => (
         <Review
           key={review.id}
           review={review}
-          handleDelete={() => deleteReview(review)}
+          handleDelete={() => deleteReview(index)}
           handleEdit={() => console.log("Editing", review)}
         />
       ))}

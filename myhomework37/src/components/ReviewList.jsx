@@ -4,10 +4,15 @@ import "./ReviewList.css";
 import ReviewForm from "./ReviewForm";
 import useFieldValues from "hooks/useFieldValues";
 
+// 특정 대상을 삭제하기 위해서는 식별자를 추가
 const INITIAL_REVIEW = [
-  { text: "내적 댄스를 불러일으키는 영화", score: 4 },
-  { text: " 1편보다 좀 더 탄탄해진 느낌! OST가 좋아요~", score: 5 },
-  { text: "스토리는 많이 유치하긴하지만 훌륭한 음악들로 커버한다.", score: 2 },
+  { id: 1, text: "내적 댄스를 불러일으키는 영화", score: 4 },
+  { id: 2, text: " 1편보다 좀 더 탄탄해진 느낌! OST가 좋아요~", score: 5 },
+  {
+    id: 3,
+    text: "스토리는 많이 유치하긴하지만 훌륭한 음악들로 커버한다.",
+    score: 2,
+  },
 ];
 
 function ReviewList() {
@@ -23,8 +28,13 @@ function ReviewList() {
   //   setShowForm("review_form");
   // };
 
+  // 새로운 리뷰 저장
   const appendReview = () => {
-    const review = { ...fieldValues };
+    // review는 데이터베이스에 저장하면 id를 할당해 줌.
+
+    const reviewId = new Date().getTime();
+
+    const review = { ...fieldValues, id: reviewId };
 
     setReviewList((prevFieldValues) => [...prevFieldValues, review]);
     clearFieldValues();

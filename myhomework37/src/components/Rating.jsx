@@ -7,7 +7,7 @@ const FilledStar = () => {
       focusable="false"
       data-prefix="fas"
       data-icon="star"
-      class="w-4 text-yellow-500 mr-1"
+      className="w-4 text-yellow-500 mr-1"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 576 512"
@@ -27,7 +27,7 @@ const EmptyStar = () => {
       focusable="false"
       data-prefix="far"
       data-icon="star"
-      class="w-4 text-yellow-500"
+      className="w-4 text-yellow-500"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 576 512"
@@ -45,7 +45,7 @@ const range = (size) => [...Array(size).keys()];
 function Rating({ score }) {
   return (
     <div>
-      <ul class="flex justify-left m-1">
+      <ul className="flex justify-left m-1">
         {range(5).map((index) =>
           index < score ? <FilledStar /> : <EmptyStar />
         )}

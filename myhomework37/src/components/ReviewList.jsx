@@ -52,7 +52,7 @@ function ReviewList() {
   return (
     <div className="review-list">
       <h1>Sing 2</h1>
-      <h2 class="text-xl mb-2 border-b-2 border-orange-500">Review List</h2>
+      <h2 className="text-xl mb-2 border-b-2 border-orange-500">Review List</h2>
 
       {showForm && (
         <ReviewForm
@@ -70,7 +70,7 @@ function ReviewList() {
         </button>
       )}
 
-      {JSON.stringify(fieldValues)}
+      {/* {JSON.stringify(fieldValues)} */}
       {reviewList.map((review, index) => (
         <Review
           key={review.id}

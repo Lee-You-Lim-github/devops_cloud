@@ -41,6 +41,11 @@ function ReviewList() {
     setShowForm((prev) => !prev);
   };
 
+  const deleteReview = (deletingReview) => {
+    console.log("Deleting", deletingReview);
+    //TODO : reviewList 배열 상탯값에서 deletingReivew
+  };
+
   return (
     <div className="review-list">
       <h1>Sing 2</h1>
@@ -64,7 +69,12 @@ function ReviewList() {
 
       {JSON.stringify(fieldValues)}
       {reviewList.map((review) => (
-        <Review key={review.id} review={review} />
+        <Review
+          key={review.id}
+          review={review}
+          handleDelete={() => deleteReview(review)}
+          handleEdit={() => console.log("Editing", review)}
+        />
       ))}
     </div>
   );

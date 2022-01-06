@@ -19,34 +19,63 @@ function ReviewList() {
   const [showForm, setShowForm] = useState(false);
   const [reviewList, setReviewList] = useState(INITIAL_REVIEW);
 
-  const [fieldValues, handleChange, clearFieldValues] = useFieldValues({
-    text: "",
-    score: 3,
-  });
+  // setFieldValuse : 목적은 수정!!!
+  const [fieldValues, setFieldValuse, handleChange, clearFieldValues] =
+    useFieldValues({
+      text: "",
+      score: 3,
+    });
 
   // const changedPage = (pageName) => {
   //   setShowForm("review_form");
   // };
 
-  // 새로운 리뷰 저장
+  // 새로운 리뷰 저장 + 기존 리뷰 수정
   const appendReview = () => {
     // review는 데이터베이스에 저장하면 id를 할당해 줌.
 
-    const reviewId = new Date().getTime();
+    const { id: reviewId } = fieldValues;
+    //새로운 리뷰 저장
+    if (!reviewId) {
+    }
+    // 기존 리뷰 수정
+    else {
+    }
 
-    const review = { ...fieldValues, id: reviewId };
+    // const reviewId = new Date().getTime();
 
-    setReviewList((prevFieldValues) => [...prevFieldValues, review]);
+    // const review = { ...fieldValues, id: reviewId };
+
+    // setReviewList((prevFieldValues) => [...prevFieldValues, review]);
+
     clearFieldValues();
     setShowForm((prev) => !prev);
   };
 
-  const deleteReview = (deletingReview) => {
-    console.log("Deleting", deletingReview);
+  const deleteReview = (deletingReview, ReviewIndex) => {
+    console.log("Deleting", deletingReview.id, ReviewIndex);
     //TODO : reviewList 배열 상탯값에서 deletingReivew
+    // setReviewList((prevFieldValues) =>
+    //   prevFieldValues.filter((_, index) => ReviewIndex !== index)
+    // );
+
+    // 교수님 풀이
+    // setReviewList((prevFieldValues) =>
+    //   prevFieldValues.filter((review) => review.id !== deletingReview.id)
+    // );
     setReviewList((prevFieldValues) =>
-      prevFieldValues.filter((_, index) => deletingReview !== index)
+      prevFieldValues.filter(
+        ({ id: reviewId }) => reviewId !== deletingReview.id
+      )
     );
+  };
+
+  // 수정할 땐 id가 없음.
+  const willEditReview = (editingReivew) => {
+    console.log("Editing", editingReivew);
+
+    setFieldValuse(editingReivew);
+    setShowForm(true);
   };
 
   return (
@@ -56,8 +85,8 @@ function ReviewList() {
 
       {showForm && (
         <ReviewForm
-          handleChange={handleChange}
           fieldValues={fieldValues}
+          handleChange={handleChange}
           handleSubmit={appendReview}
         />
       )}
@@ -75,8 +104,8 @@ function ReviewList() {
         <Review
           key={review.id}
           review={review}
-          handleDelete={() => deleteReview(index)}
-          handleEdit={() => console.log("Editing", review)}
+          handleDelete={() => deleteReview(review, index)}
+          handleEdit={() => willEditReview(review)}
         />
       ))}
     </div>

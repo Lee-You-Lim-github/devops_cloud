@@ -13,7 +13,7 @@ function useFieldValues(initial) {
       [name]: value,
     }));
   };
-  return [fieldValues, handleChange, clearFieldValues];
+  return [fieldValues, handleChange, clearFieldValues, setFieldValuse];
 }
 
 export default useFieldValues;

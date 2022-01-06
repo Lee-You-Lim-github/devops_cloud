@@ -11,7 +11,7 @@ const INITIAL_REVIEW = [
 ];
 
 function ReviewList() {
-  const [pageName, setPageName] = useState("");
+  const [showForm, setShowForm] = useState(false);
   const [reviewList, setReviewList] = useState(INITIAL_REVIEW);
 
   const [fieldValues, handleChange, clearFieldValues] = useFieldValues({
@@ -19,15 +19,16 @@ function ReviewList() {
     score: 3,
   });
 
-  const changePageName = (pageName) => {
-    setPageName("review_form");
-  };
+  // const changedPage = (pageName) => {
+  //   setShowForm("review_form");
+  // };
 
   const appendReview = () => {
     const review = { ...fieldValues };
 
     setReviewList((prevFieldValues) => [...prevFieldValues, review]);
     clearFieldValues();
+    setShowForm((prev) => !prev);
   };
 
   return (
@@ -35,19 +36,21 @@ function ReviewList() {
       <h1>Sing 2</h1>
       <h2 class="text-xl mb-2 border-b-2 border-orange-500">Review List</h2>
 
-      {pageName === "review_form" && (
+      {showForm && (
         <ReviewForm
           handleChange={handleChange}
           fieldValues={fieldValues}
           handleSubmit={appendReview}
         />
       )}
-      <button
-        className="bg-orange-200 hover:bg-orange-400 p-1 rounded text-sm cursor-point"
-        onClick={changePageName}
-      >
-        리뷰 작성
-      </button>
+      {!showForm && (
+        <button
+          className="bg-orange-200 hover:bg-orange-400 p-1 rounded text-sm cursor-point"
+          onClick={() => setShowForm((prev) => !prev)}
+        >
+          리뷰 작성
+        </button>
+      )}
 
       {JSON.stringify(fieldValues)}
       {reviewList.map((review) => (

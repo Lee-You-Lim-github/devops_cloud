@@ -1,4 +1,8 @@
+import Rating from "./Rating";
+
 function Review({ review }) {
+  const score = review.score;
+
   return (
     <div
       className="
@@ -10,7 +14,7 @@ function Review({ review }) {
     cursor-pointer"
     >
       {review.text}
-      {`평점: ${review.score}`}
+      <Rating score={score} />
     </div>
   );
 }
